@@ -1,0 +1,14 @@
+[
+  { "query": "Offline browser game under $60", "qualified": ["acorn-trail"], "focus": "offline and strict USD budget" },
+  { "query": "Can I run this game locally without paying for an API?", "qualified": ["acorn-trail"], "focus": "paid API negation" },
+  { "query": "Browser game with keyboard controls, ideally offline", "qualified": ["acorn-trail"], "focus": "preference versus requirements" },
+  { "query": "Browser game, must have multiplayer", "qualified": [], "focus": "claimed capability without evidence" },
+  { "query": "Offline game, but it must not work offline", "qualified": [], "focus": "conflicting hard constraints" },
+  { "query": "A local game with save and reload", "qualified": [], "focus": "untested persistence" },
+  { "query": "A browser game under $0.01", "qualified": ["acorn-trail"], "focus": "one cent boundary" },
+  { "query": "Local browser game for a ₹500 budget", "qualified": [], "focus": "unconverted currency" },
+  { "query": "A UI kit with browser-based keyboard navigation", "qualified": [], "focus": "category and unknown capability" },
+  { "query": "Offline game, prefer multiplayer", "qualified": ["acorn-trail"], "focus": "unproven preference does not disqualify" },
+  { "query": "I need a game with mobile controls", "qualified": [], "focus": "untested input method" },
+  { "query": "A Godot game that runs locally", "qualified": [], "focus": "named engine without evidence" }
+]

@@ -1,0 +1,16 @@
+{
+  "origin": "https://zcode-marketplace.pages.dev",
+  "date": "2026-11-12T03:26:37.715Z",
+  "browser": "157.0.8103.40",
+  "source": "gemini",
+  "model": "gemini-3.5-flash-lite",
+  "evidencePath": "/release/acorn-trail#ev-87e194d0bdab-offline",
+  "digest": "87e194d0bdab68a3de22480e304720fd1683e19db78f337294bd23fb7da56105",
+  "checks": [
+    "Anonymous fresh browser",
+    "Editable requirements with verbatim source wording",
+    "Comparison shows verified and unknown",
+    "Evidence link resolves after reload",
+    "Downloaded sample SHA-256 matches the verifier"
+  ]
+}

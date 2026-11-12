@@ -1,0 +1,527 @@
+{
+  "date": "2026-11-12T03:11:46.303Z",
+  "catalog": [
+    "acorn-trail:1.0.0:87e194d0bdab68a3de22480e304720fd1683e19db78f337294bd23fb7da56105:0",
+    "example-fieldnotes:1.0.0::3500",
+    "example-orbit:1.0.0::4900"
+  ],
+  "totals": {
+    "briefs": 16,
+    "completed": 16,
+    "extractionExact": 1,
+    "qualificationExact": 5,
+    "falseQualified": 7,
+    "top3Qualified": 7,
+    "positiveBriefs": 7,
+    "validCitations": 24,
+    "citations": 24,
+    "sources": [
+      "@cf/ibm-granite/granite-4.0-h-micro"
+    ]
+  },
+  "rows": [
+    {
+      "id": "classroom",
+      "source": "@cf/ibm-granite/granite-4.0-h-micro",
+      "hard": [
+        "browser:+",
+        "keyboard:+",
+        "offline:+"
+      ],
+      "soft": [],
+      "maxCents": 6000,
+      "clarify": true,
+      "matches": [],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-keyboard",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-offline",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": false,
+      "falseQualified": [],
+      "top3Qualified": true
+    },
+    {
+      "id": "network-required",
+      "source": "@cf/ibm-granite/granite-4.0-h-micro",
+      "hard": [
+        "offline:+",
+        "keyboard:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-offline",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-keyboard",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": false,
+      "falseQualified": [
+        "acorn-trail"
+      ],
+      "top3Qualified": null
+    },
+    {
+      "id": "airplane",
+      "source": "@cf/ibm-granite/granite-4.0-h-micro",
+      "hard": [
+        "mobile:+",
+        "offline:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-mobile",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-offline",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": false,
+      "falseQualified": [],
+      "top3Qualified": true
+    },
+    {
+      "id": "save",
+      "source": "@cf/ibm-granite/granite-4.0-h-micro",
+      "hard": [
+        "offline:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-offline",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": false,
+      "falseQualified": [
+        "acorn-trail"
+      ],
+      "top3Qualified": null
+    },
+    {
+      "id": "shared",
+      "source": "@cf/ibm-granite/granite-4.0-h-micro",
+      "hard": [
+        "multiplayer:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-multiplayer",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": null
+    },
+    {
+      "id": "local",
+      "source": "@cf/ibm-granite/granite-4.0-h-micro",
+      "hard": [
+        "local:+",
+        "offline:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-local",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-offline",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": true
+    },
+    {
+      "id": "irrelevant",
+      "source": "@cf/ibm-granite/granite-4.0-h-micro",
+      "hard": [
+        "multiplayer:-",
+        "browser:+"
+      ],
+      "soft": [
+        "no-paid-api:+"
+      ],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-multiplayer",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": false,
+      "falseQualified": [],
+      "top3Qualified": true
+    },
+    {
+      "id": "stack",
+      "source": "@cf/ibm-granite/granite-4.0-h-micro",
+      "hard": [],
+      "soft": [
+        "local:+"
+      ],
+      "maxCents": null,
+      "clarify": true,
+      "matches": [],
+      "rank": [
+        "acorn-trail",
+        "example-orbit",
+        "example-fieldnotes"
+      ],
+      "checks": [],
+      "extractionExact": false,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": null
+    },
+    {
+      "id": "stack-exclusion",
+      "source": "@cf/ibm-granite/granite-4.0-h-micro",
+      "hard": [
+        "browser:+",
+        "no-paid-api:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-no-paid-api",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": false,
+      "falseQualified": [
+        "acorn-trail"
+      ],
+      "top3Qualified": null
+    },
+    {
+      "id": "monthly",
+      "source": "@cf/ibm-granite/granite-4.0-h-micro",
+      "hard": [
+        "no-paid-api:+"
+      ],
+      "soft": [],
+      "maxCents": 2500,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-no-paid-api",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": false,
+      "falseQualified": [
+        "acorn-trail"
+      ],
+      "top3Qualified": null
+    },
+    {
+      "id": "budget-boundary",
+      "source": "@cf/ibm-granite/granite-4.0-h-micro",
+      "hard": [
+        "browser:+",
+        "no-paid-api:+"
+      ],
+      "soft": [],
+      "maxCents": 0,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-no-paid-api",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": true
+    },
+    {
+      "id": "budget-unclear",
+      "source": "@cf/ibm-granite/granite-4.0-h-micro",
+      "hard": [
+        "browser:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": false,
+      "falseQualified": [
+        "acorn-trail"
+      ],
+      "top3Qualified": null
+    },
+    {
+      "id": "free-setup",
+      "source": "@cf/ibm-granite/granite-4.0-h-micro",
+      "hard": [
+        "offline:+"
+      ],
+      "soft": [
+        "local:+"
+      ],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-offline",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": true
+    },
+    {
+      "id": "cost-ambiguity",
+      "source": "@cf/ibm-granite/granite-4.0-h-micro",
+      "hard": [
+        "browser:+"
+      ],
+      "soft": [
+        "no-paid-api:+"
+      ],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": false,
+      "falseQualified": [
+        "acorn-trail"
+      ],
+      "top3Qualified": null
+    },
+    {
+      "id": "conflict",
+      "source": "@cf/ibm-granite/granite-4.0-h-micro",
+      "hard": [
+        "offline:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-offline",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": false,
+      "falseQualified": [
+        "acorn-trail"
+      ],
+      "top3Qualified": null
+    },
+    {
+      "id": "preference",
+      "source": "@cf/ibm-granite/granite-4.0-h-micro",
+      "hard": [
+        "browser:+",
+        "no-paid-api:-"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-no-paid-api",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": false,
+      "falseQualified": [],
+      "top3Qualified": true
+    }
+  ]
+}

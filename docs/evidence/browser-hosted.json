@@ -1,0 +1,13 @@
+{
+  "origin": "https://zcode-marketplace.pages.dev",
+  "chrome": "157.0.8103.40",
+  "date": "2026-11-12T01:14:23.114Z",
+  "results": [
+    "Desktop storefront and keyboard skip link",
+    "Hosted-safe SPA refresh and direct link to release-specific evidence",
+    "Both videos load and browser download matches isolated runner checksum",
+    "Two-release comparison distinguishes observed and unknown offline behavior",
+    "Hosted sample checkout has no payment control",
+    "390px mobile viewport has no page overflow on home, release and browse"
+  ]
+}

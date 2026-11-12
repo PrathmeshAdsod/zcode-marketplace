@@ -1,0 +1,512 @@
+{
+  "date": "2026-11-12T03:25:31.719Z",
+  "catalog": [
+    "acorn-trail:1.0.0:87e194d0bdab68a3de22480e304720fd1683e19db78f337294bd23fb7da56105:0",
+    "example-fieldnotes:1.0.0::3500",
+    "example-orbit:1.0.0::4900"
+  ],
+  "totals": {
+    "briefs": 16,
+    "completed": 16,
+    "extractionExact": 7,
+    "qualificationExact": 11,
+    "falseQualified": 3,
+    "top3Qualified": 6,
+    "positiveBriefs": 7,
+    "validCitations": 21,
+    "citations": 21,
+    "sources": [
+      "gemini-3.5-flash-lite",
+      "literal"
+    ]
+  },
+  "rows": [
+    {
+      "id": "classroom",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [
+        "browser:+",
+        "offline:+",
+        "no-paid-api:+"
+      ],
+      "soft": [
+        "keyboard:+"
+      ],
+      "maxCents": 6000,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-offline",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-keyboard",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-no-paid-api",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": true,
+      "literalQuotes": true
+    },
+    {
+      "id": "network-required",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [
+        "offline:-"
+      ],
+      "soft": [
+        "keyboard:+"
+      ],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [],
+      "rank": [
+        "example-orbit",
+        "acorn-trail"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-offline",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-keyboard",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "airplane",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [
+        "offline:+"
+      ],
+      "soft": [
+        "mobile:+"
+      ],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-offline",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-mobile",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": true,
+      "literalQuotes": true
+    },
+    {
+      "id": "save",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [
+        "persistence:+",
+        "browser:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-persistence",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "shared",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [
+        "multiplayer:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-multiplayer",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "local",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [
+        "local:+"
+      ],
+      "soft": [
+        "offline:+"
+      ],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-local",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-offline",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": true,
+      "literalQuotes": true
+    },
+    {
+      "id": "irrelevant",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [
+        "multiplayer:-",
+        "browser:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-multiplayer",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": false,
+      "falseQualified": [],
+      "top3Qualified": true,
+      "literalQuotes": true
+    },
+    {
+      "id": "stack",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [
+        "stack:Godot:+"
+      ],
+      "soft": [
+        "local:+"
+      ],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [],
+      "rank": [
+        "acorn-trail",
+        "example-orbit",
+        "example-fieldnotes"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-local",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "stack-exclusion",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [],
+      "extractionExact": false,
+      "qualificationExact": false,
+      "falseQualified": [
+        "acorn-trail"
+      ],
+      "top3Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "monthly",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [
+        "recurring-budget:2500:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [],
+      "rank": [
+        "acorn-trail",
+        "example-orbit",
+        "example-fieldnotes"
+      ],
+      "checks": [],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "budget-boundary",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [
+        "browser:+"
+      ],
+      "soft": [],
+      "maxCents": -1,
+      "clarify": false,
+      "matches": [],
+      "rank": [],
+      "checks": [],
+      "extractionExact": false,
+      "qualificationExact": false,
+      "falseQualified": [],
+      "top3Qualified": false,
+      "literalQuotes": true
+    },
+    {
+      "id": "budget-unclear",
+      "source": "literal",
+      "hard": [
+        "browser:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": true,
+      "matches": [],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "free-setup",
+      "source": "literal",
+      "hard": [
+        "offline:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-offline",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": true,
+      "literalQuotes": true
+    },
+    {
+      "id": "cost-ambiguity",
+      "source": "literal",
+      "hard": [
+        "browser:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": false,
+      "falseQualified": [
+        "acorn-trail"
+      ],
+      "top3Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "conflict",
+      "source": "literal",
+      "hard": [
+        "offline:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-offline",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": false,
+      "falseQualified": [
+        "acorn-trail"
+      ],
+      "top3Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "preference",
+      "source": "literal",
+      "hard": [
+        "browser:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": true,
+      "literalQuotes": true
+    }
+  ]
+}

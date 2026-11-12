@@ -1,0 +1,56 @@
+# Cloudflare and provider setup
+
+## Current preview
+
+- Production project `zcode-marketplace`, branch `main`, [Pages preview](https://zcode-marketplace.pages.dev/) and [API health](https://zcode-marketplace.pages.dev/api/health).
+- Pages serves the Vite `dist` directory and the same-origin `/api/*` Functions. Browser deep links refresh through Pages SPA routing. There is no separate API origin.
+- D1, the dedicated private R2 Standard bucket `zcode-marketplace-private`, and Gemini 3.5 Flash-Lite are configured for production. R2 public access is disabled. See [usage limits and recovery](COST-CONTROLS.md).
+- The preview runs on Pages without a custom domain. Checkout and ingestion fail closed until their required bindings and secrets exist. No paid upgrade, R2 activation or domain purchase was performed.
+
+## Deploy or reproduce
+
+Use a new Pages project and a D1 database, or reuse the existing ones. Use the database UUID that Wrangler prints. Configure a private bucket only after the account owner accepts R2 activation in the dashboard. Leave `r2.dev` and bucket public domains disabled.
+
+```sh
+npm ci
+npm run build
+npx wrangler pages project create YOUR_PAGES_PROJECT --production-branch main
+npx wrangler d1 create YOUR_DATABASE --no-update-config
+node scripts/prepare-pages.mjs YOUR_PAGES_PROJECT YOUR_DATABASE YOUR_DATABASE_UUID
+npx wrangler d1 migrations apply DB --remote --config .local/pages/wrangler.jsonc
+cd .local/pages
+npx wrangler pages deploy dist --project-name YOUR_PAGES_PROJECT --branch main
+```
+
+Pass the private bucket name as the fourth argument to `prepare-pages.mjs` when it is available. Use the root repository to run builds and migrations. Direct Upload was chosen to keep deployment independent of public GitHub publication. For a Git-connected project, use the official React build configuration (`npm run build`, `dist`) and the equivalent production configuration with local demo flags removed. In production Cloudflare Pages settings, add variables and secrets to the production environment. Do not put secrets in the client bundle or in the tracked Wrangler config.
+
+For Gemini, confirm billing is disabled and read the actual model limits in the dedicated project's AI Studio rate limits view. Set `GEMINI_API_KEY` as an encrypted Pages secret restricted to the Gemini Developer API. Set `GEMINI_FREE_RPM`, `GEMINI_FREE_TPM`, and `GEMINI_FREE_RPD` in the shell that runs `prepare-pages.mjs`. These are provider limits before Zcode applies its own reserves. The current project shows 15, 250000, and 500 respectively. Confirm the current limits again for any replacement project.
+
+### Owner actions for the real Sandbox journey
+
+1. For a new deployment, in [Cloudflare Dashboard](https://dash.cloudflare.com/), open **R2 Object Storage** for the Pages account and review activation. Use a Standard private bucket and verify `privateStorage: true` in health. The Zcode production bucket has already been provisioned.
+2. On [GitHub → New GitHub App](https://github.com/settings/apps/new), register a dedicated app under the approved owner. The homepage is the Pages origin. Set the user authorization callback to `/api/github/callback`, Setup URL to `/api/github/install/callback`, and Webhook URL to `/api/webhooks/github` on that origin. Use repository **Contents: Read-only** and automatically required **Metadata**. Configure a webhook secret, keep expiring user tokens enabled, and leave the install-time OAuth checkbox off because the marketplace starts its own PKCE authorization. Set visibility for the intended test accounts. Set `GITHUB_APP_SLUG`, `GITHUB_APP_ID`, `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, `GITHUB_PRIVATE_KEY`, and `GITHUB_WEBHOOK_SECRET` in Pages. Upload the key only via the secret manager. Sign in as the seller, connect the GitHub App and choose **Only select repositories** for one owner-authorized private repo. Enter a separate reviewer's numeric GitHub account ID in `REVIEWER_GITHUB_IDS`. Studio must show the connected repo before submitting.
+3. In [PayPal Developer Dashboard](https://developer.paypal.com/dashboard/), select **Sandbox** and use a dedicated Zcode REST app under the test Business merchant. Use the separate Sandbox Personal account for approval. Add the webhook URL `https://zcode-marketplace.pages.dev/api/webhooks/paypal` for `CHECKOUT.ORDER.COMPLETED` and `PAYMENT.CAPTURE.COMPLETED`, `PENDING`, `DENIED`, `REFUNDED` and `REVERSED` (all with the `PAYMENT.CAPTURE.` prefix). Set `PAYPAL_CLIENT_ID`, `PAYPAL_CLIENT_SECRET`, `PAYPAL_MERCHANT_ID`, `PAYPAL_WEBHOOK_ID`, and the seller's numeric GitHub ID in `TEAM_SELLER_GITHUB_ID` using the Pages secret manager. Never use Live credentials. Inspect the consent screen as the personal Sandbox buyer. The merchant identity and receipt must match canonical PayPal readback.
+4. Set distinct random `RUNNER_TOKEN` and `OPERATOR_TOKEN` secrets, each at least 32 characters. Set the matching runner token in the operator's environment as `ZCODE_RUNNER_TOKEN`. Run `docker build -t zcode-runner:1 runner`, then `python runner/verify.py job --origin https://YOUR_PAGES_PROJECT.pages.dev --repo AUTHORIZED_NUMERIC_REPO_ID`. The controller fetches source for that repo only. It reports a clean result to the review desk; the reviewer must still watch both videos and publish.
+5. Use an independent buyer session to complete one Sandbox purchase and repeat the download from the library. Save the redacted order and capture references, purchased digest, and a fresh install result. Use a separate Sandbox purchase for the refund probe. Create a receipt-linked support case, then invoke `POST /api/operator/refund/PURCHASE_ID` with the operator bearer token and `{"caseId":"CASE_ID"}`. Confirm readback and attempt a previously issued download from the original buyer. Credentials and unredacted provider responses stay private.
+
+The operator may invoke `POST /api/operator/reconcile` with the operator bearer token to process one ready delivery or reconciliation job per call. Run this periodically only while operating configured commerce. A buyer can also reconcile their receipt and retry archive delivery. Reconciliation uses readback before replaying a capture. Unresolved state after the bounded retries requires operator investigation in PayPal.
+
+`POST /api/operator/paypal/check` uses the same operator bearer token. It authenticates to the real Sandbox API and verifies the webhook URL and event list without creating an order. It does not confirm that a signed event can be delivered or that a payment can be captured.
+
+## Invariants and limits
+
+D1 uses uniqueness constraints, transactional batches and SQLite triggers. Admission reserves one of five unique slots and inserts one immutable release in the same batch. Payment completion updates one purchase and triggers entitlement and delivery outbox inserts atomically. The accepted release, amount, buyer, seller, license and digest are immutable. A signed PayPal reversal is retained even if the immediate readback fails. A full refund revokes future downloads; a partial refund does not revoke an existing grant and should be reviewed by the operator. Tickets are single-use and require the buyer's current session. Revocation cannot recall a ZIP already downloaded. No KV is used for payment or entitlement records.
+
+Local integration tests exercise D1/R2 with simulated GitHub and PayPal responses. Do not use the PayPal webhook simulator as proof of signed REST postback: the simulator does not support that verification mode. See the [Sandbox rehearsal results](SANDBOX-REHEARSAL.md) for the real provider checks and the remaining hosted acceptance test. This configuration serves one team Sandbox merchant; seller payouts and live payments are not enabled.
+
+The source ZIP is capped at 8 MiB and its expanded payload at 25 MiB / 1,500 entries. Verification is limited to three leased attempts, 60 seconds of container execution, 1.5 CPU and 800 MiB RAM. The job runs as a non-root user with an isolated network, read-only source mount, read-only root filesystem and no provider credentials. The controller is manually scoped to one known repository. It is suitable for the trusted demonstration adapter. Use separate reviewed infrastructure for public multitenant jobs. The screening detects selected credential patterns and common packaging problems. It is not a guarantee of a safe codebase or a full dependency or rights audit. Failed lease artifacts can be retained in private storage for investigation, then removed by an operator after checking no immutable release references the object. Preserve a purchased release while it is covered by support and retention terms. A rights or safety hold suspends checkout and future downloads while a reviewer resolves the case.
+
+Workers compute, D1, R2 and Gemini have separate allowances. The hosted Finder bounds request size and candidates and falls back to keyword rules when Gemini is unavailable. Runtime Docker and packaging stay outside Pages. Confirm the account's current plan and R2 billing before any additional activation.
+
+## Primary references checked November 12, 2026
+
+- Cloudflare [React on Pages](https://developers.cloudflare.com/pages/framework-guides/deploy-a-react-site/), [Functions configuration](https://developers.cloudflare.com/pages/functions/wrangler-configuration/), [D1 batch API](https://developers.cloudflare.com/d1/worker-api/d1-database/#batch), [Workers limits](https://developers.cloudflare.com/workers/platform/limits/), [D1 pricing](https://developers.cloudflare.com/d1/platform/pricing/), [R2 setup](https://developers.cloudflare.com/r2/get-started/) and [pricing](https://developers.cloudflare.com/r2/pricing/).
+- Google [Gemini 3.5 Flash-Lite](https://aistudio.google.com/docs/models/gemini-3.5-flash-lite), [GenAI SDK](https://aistudio.google.com/docs/libraries), [structured output](https://aistudio.google.com/docs/structured-output), and [project limits](https://aistudio.google.com/docs/rate-limits).
+- GitHub [REST versions](https://docs.github.com/en/rest/about-the-rest-api/api-versions), [user token and installation intersection](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app), [installation authentication](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/authenticating-as-a-github-app-installation), [archive endpoint](https://docs.github.com/en/rest/repos/contents#download-a-repository-archive-zip) and [webhook HMAC](https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries).
+- PayPal [Sandbox overview](https://developer.paypal.com/sandbox-testing/overview), [hosted Orders API approval](https://developer.paypal.com/whats-an-order/), [Payments v2](https://developer.paypal.com/api/payments/v2), [signature verification](https://developer.paypal.com/api/rest/webhooks/rest/) and [idempotency limits](https://developer.paypal.com/api/rest/reference/idempotency/). The server calls the Sandbox API and accepts approval URLs only for the matching order on PayPal Sandbox. A short deterministic request ID preserves each logical operation across retries.

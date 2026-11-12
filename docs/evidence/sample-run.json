@@ -1,0 +1,69 @@
+{
+  "report": {
+    "adapter": "node-browser-trail/1",
+    "environment": "Linux Docker · v26.13.1 · Chromium 158.0.8127.18 · sha256:a16b1f3ddfadffa2d5a77ed1b5779e853637d80a350fedfdd628700b40cea315",
+    "checkedAt": "2026-11-12T00:44:28.455046+00:00",
+    "elapsedMs": 8281,
+    "digest": "87e194d0bdab68a3de22480e304720fd1683e19db78f337294bd23fb7da56105",
+    "corePassed": true,
+    "findings": [
+      {
+        "id": "ev-87e194d0bdab-local",
+        "capability": "local",
+        "status": "pass",
+        "observation": "Installed the delivered ZIP with npm ci and started its localhost server in a clean container."
+      },
+      {
+        "id": "ev-87e194d0bdab-offline",
+        "capability": "offline",
+        "status": "pass",
+        "observation": "Completed setup and gameplay with container networking disabled."
+      },
+      {
+        "id": "ev-87e194d0bdab-no-paid-api",
+        "capability": "no-paid-api",
+        "status": "pass",
+        "observation": "The tested install and gameplay completed with no network access or API credentials."
+      },
+      {
+        "id": "ev-87e194d0bdab-keyboard",
+        "capability": "keyboard",
+        "status": "pass",
+        "observation": "Used Enter and Arrow Right to collect three acorns and complete the trail."
+      },
+      {
+        "id": "ev-87e194d0bdab-browser",
+        "capability": "browser",
+        "status": "pass",
+        "observation": "Chromium rendered the game and observed its trail completion state."
+      },
+      {
+        "id": "ev-87e194d0bdab-multiplayer",
+        "capability": "multiplayer",
+        "status": "untested",
+        "observation": "The runner exercised one browser session."
+      },
+      {
+        "id": "ev-87e194d0bdab-persistence",
+        "capability": "persistence",
+        "status": "untested",
+        "observation": "The runner did not test saves or reloads."
+      },
+      {
+        "id": "ev-87e194d0bdab-mobile",
+        "capability": "mobile",
+        "status": "untested",
+        "observation": "The clean install probe used desktop Chromium and keyboard input."
+      }
+    ]
+  },
+  "buyerInstall": {
+    "digest": "87e194d0bdab68a3de22480e304720fd1683e19db78f337294bd23fb7da56105",
+    "extractedIntoFreshFolder": true,
+    "offlineNpmInstall": "up to date in 2s",
+    "startup": "Acorn Trail is ready at http://127.0.0.1:4177",
+    "observed": "Trail complete · 3 acorns delivered",
+    "node": "v24.13.0",
+    "chrome": "157.0.8103.40"
+  }
+}

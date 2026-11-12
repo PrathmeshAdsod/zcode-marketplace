@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acorn Trail</title>
+  <link rel="stylesheet" href="./game.css">
+</head>
+<body>
+  <main>
+    <section class="stage" aria-label="Acorn Trail">
+      <canvas id="game" width="480" height="270" aria-label="A pixel art forest game under a full moon"></canvas>
+      <div id="welcome">
+        <p>THE WOODLAND AFTER DARK</p>
+        <h1>Acorn Trail</h1>
+        <button id="start">Begin trail</button>
+      </div>
+      <output id="status" aria-live="polite">Collect three acorns and reach camp.</output>
+    </section>
+    <div id="touch" aria-label="Movement controls">
+      <button data-move="ArrowLeft" aria-label="Move left">←</button>
+      <button data-move="ArrowUp" aria-label="Move up">↑</button>
+      <button data-move="ArrowDown" aria-label="Move down">↓</button>
+      <button data-move="ArrowRight" aria-label="Move right">→</button>
+    </div>
+    <p class="instructions">Arrow keys or WASD to move · Collect three acorns · Reach camp</p>
+  </main>
+  <script src="./game.js"></script>
+</body>
+</html>

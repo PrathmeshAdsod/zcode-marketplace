@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "zcode-marketplace",
+  "compatibility_date": "2026-11-12",
+  "pages_build_output_dir": "./dist",
+  "d1_databases": [
+    { "binding": "DB", "database_name": "zcode-local", "database_id": "00000000-0000-4000-8000-000000000001" }
+  ],
+  "r2_buckets": [{ "binding": "ARTIFACTS", "bucket_name": "zcode-local" }],
+  "vars": {
+    "LOCAL_DEMO": "1",
+    "OLLAMA_URL": "http://127.0.0.1:11434",
+    "OLLAMA_MODEL": "qwen2.5:1.5b",
+    "OLLAMA_EMBED_MODEL": "all-minilm"
+  }
+}

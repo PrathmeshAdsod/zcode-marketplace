@@ -1,0 +1,24 @@
+# Copy to .dev.vars for local testing. For hosted use set secrets in Cloudflare.
+APP_ORIGIN=http://127.0.0.1:8788
+GITHUB_APP_SLUG=
+GITHUB_APP_ID=
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
+# Use a GitHub-generated PKCS#1 or PKCS#8 PEM, with literal \n for line breaks.
+GITHUB_PRIVATE_KEY=
+GITHUB_WEBHOOK_SECRET=
+REVIEWER_GITHUB_IDS=
+COST_ADMIN_GITHUB_IDS=
+# Only this GitHub user can be paid by the team sandbox merchant.
+TEAM_SELLER_GITHUB_ID=
+PAYPAL_CLIENT_ID=
+PAYPAL_CLIENT_SECRET=
+PAYPAL_MERCHANT_ID=
+PAYPAL_WEBHOOK_ID=
+OPERATOR_TOKEN=
+RUNNER_TOKEN=
+# Optional local inference. Use the verified limits of a dedicated free project.
+GEMINI_API_KEY=
+GEMINI_FREE_RPM=
+GEMINI_FREE_TPM=
+GEMINI_FREE_RPD=

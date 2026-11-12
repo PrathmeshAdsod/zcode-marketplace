@@ -1,0 +1,16 @@
+*{box-sizing:border-box}
+body{margin:0;min-height:100svh;display:grid;place-items:center;background:#0d1921;color:#f8efd2;font-family:system-ui,sans-serif}
+main{width:min(100%,1100px);padding:20px}
+.stage{position:relative;overflow:hidden;background:#172934;border:1px solid #567568;border-radius:13px}
+canvas{display:block;width:100%;height:auto;image-rendering:pixelated}
+#welcome{position:absolute;inset:13% auto auto 7%;text-shadow:0 3px 0 #101c25}
+#welcome p{font:600 clamp(7px,1.15vw,13px) ui-monospace,monospace;letter-spacing:.2em;color:#b8d2ac}
+h1{font:600 clamp(29px,7.8vw,94px)/.95 Georgia,serif;margin:.05em 0 .25em;letter-spacing:-.045em}
+button{font:600 14px system-ui,sans-serif;color:#172823;background:#ebc982;border:0;border-bottom:3px solid #ad844f;border-radius:5px;padding:8px 14px;cursor:pointer;touch-action:none}
+button:focus-visible{outline:3px solid white;outline-offset:3px}
+#status{position:absolute;left:3%;bottom:4%;padding:5px 9px;border:1px solid #6a8974;background:#172b28;font:600 clamp(8px,1.3vw,14px) ui-monospace,monospace}
+.instructions{text-align:center;font-size:13px;color:#bbcbbf;margin:13px 0 0}
+#touch{display:flex;justify-content:center;gap:7px;margin-top:13px}
+#touch button{min-width:44px}
+@media(pointer:fine){#touch{display:none}}
+

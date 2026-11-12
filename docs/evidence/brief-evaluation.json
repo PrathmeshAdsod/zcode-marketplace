@@ -1,0 +1,979 @@
+{
+  "date": "2026-11-12T01:14:58.732Z",
+  "modelOrigin": "https://zcode-marketplace.pages.dev",
+  "catalogSize": 3,
+  "labelSource": "Developer-authored expectations; independent human review pending",
+  "baseline": {
+    "top3Hit": 5,
+    "positiveBriefs": 5,
+    "abstained": 7,
+    "negativeBriefs": 7,
+    "hardConstraintErrors": 0,
+    "qualifiedRecommendations": 5,
+    "correctCitations": 18,
+    "citations": 18,
+    "modelParses": 0,
+    "semanticSearches": 0
+  },
+  "hybrid": {
+    "top3Hit": 5,
+    "positiveBriefs": 5,
+    "abstained": 7,
+    "negativeBriefs": 7,
+    "hardConstraintErrors": 0,
+    "qualifiedRecommendations": 5,
+    "correctCitations": 19,
+    "citations": 19,
+    "modelParses": 12,
+    "semanticSearches": 12
+  },
+  "rows": [
+    {
+      "query": "Offline browser game under $60",
+      "qualified": [
+        "acorn-trail"
+      ],
+      "focus": "offline and strict USD budget",
+      "baseline": {
+        "mode": "literal",
+        "model": null,
+        "retrieval": "lexical",
+        "brief": {
+          "hard": [
+            {
+              "key": "offline",
+              "expected": true
+            },
+            {
+              "key": "browser",
+              "expected": true
+            }
+          ],
+          "preferences": [],
+          "ambiguities": [],
+          "maxCents": 5999,
+          "category": "Games"
+        },
+        "rank": [
+          "acorn-trail",
+          "example-orbit"
+        ],
+        "matches": [
+          "acorn-trail"
+        ],
+        "citations": [
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-offline",
+            "correct": true
+          },
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-browser",
+            "correct": true
+          }
+        ]
+      },
+      "hybrid": {
+        "mode": "model",
+        "model": "@cf/ibm-granite/granite-4.0-h-micro",
+        "retrieval": "hybrid",
+        "brief": {
+          "hard": [
+            {
+              "key": "offline",
+              "expected": true
+            },
+            {
+              "key": "browser",
+              "expected": true
+            }
+          ],
+          "preferences": [],
+          "ambiguities": [],
+          "maxCents": 5999,
+          "category": "Games"
+        },
+        "rank": [
+          "acorn-trail",
+          "example-orbit"
+        ],
+        "matches": [
+          "acorn-trail"
+        ],
+        "citations": [
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-offline",
+            "correct": true
+          },
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-browser",
+            "correct": true
+          }
+        ]
+      }
+    },
+    {
+      "query": "Can I run this game locally without paying for an API?",
+      "qualified": [
+        "acorn-trail"
+      ],
+      "focus": "paid API negation",
+      "baseline": {
+        "mode": "literal",
+        "model": null,
+        "retrieval": "lexical",
+        "brief": {
+          "hard": [
+            {
+              "key": "local",
+              "expected": true
+            },
+            {
+              "key": "no-paid-api",
+              "expected": true
+            }
+          ],
+          "preferences": [],
+          "ambiguities": [],
+          "maxCents": null,
+          "category": "Games"
+        },
+        "rank": [
+          "acorn-trail",
+          "example-orbit"
+        ],
+        "matches": [
+          "acorn-trail"
+        ],
+        "citations": [
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-local",
+            "correct": true
+          },
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-no-paid-api",
+            "correct": true
+          }
+        ]
+      },
+      "hybrid": {
+        "mode": "model",
+        "model": "@cf/ibm-granite/granite-4.0-h-micro",
+        "retrieval": "hybrid",
+        "brief": {
+          "hard": [
+            {
+              "key": "local",
+              "expected": true
+            },
+            {
+              "key": "no-paid-api",
+              "expected": true
+            }
+          ],
+          "preferences": [],
+          "ambiguities": [],
+          "maxCents": null,
+          "category": "Games"
+        },
+        "rank": [
+          "acorn-trail",
+          "example-orbit"
+        ],
+        "matches": [
+          "acorn-trail"
+        ],
+        "citations": [
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-local",
+            "correct": true
+          },
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-no-paid-api",
+            "correct": true
+          }
+        ]
+      }
+    },
+    {
+      "query": "Browser game with keyboard controls, ideally offline",
+      "qualified": [
+        "acorn-trail"
+      ],
+      "focus": "preference versus requirements",
+      "baseline": {
+        "mode": "literal",
+        "model": null,
+        "retrieval": "lexical",
+        "brief": {
+          "hard": [
+            {
+              "key": "keyboard",
+              "expected": true
+            },
+            {
+              "key": "browser",
+              "expected": true
+            }
+          ],
+          "preferences": [
+            {
+              "key": "offline",
+              "expected": true
+            }
+          ],
+          "ambiguities": [],
+          "maxCents": null,
+          "category": "Games"
+        },
+        "rank": [
+          "acorn-trail",
+          "example-orbit"
+        ],
+        "matches": [
+          "acorn-trail"
+        ],
+        "citations": [
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-keyboard",
+            "correct": true
+          },
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-browser",
+            "correct": true
+          }
+        ]
+      },
+      "hybrid": {
+        "mode": "model",
+        "model": "@cf/ibm-granite/granite-4.0-h-micro",
+        "retrieval": "hybrid",
+        "brief": {
+          "hard": [
+            {
+              "key": "keyboard",
+              "expected": true
+            },
+            {
+              "key": "browser",
+              "expected": true
+            }
+          ],
+          "preferences": [
+            {
+              "key": "offline",
+              "expected": true
+            }
+          ],
+          "ambiguities": [],
+          "maxCents": null,
+          "category": "Games"
+        },
+        "rank": [
+          "acorn-trail",
+          "example-orbit"
+        ],
+        "matches": [
+          "acorn-trail"
+        ],
+        "citations": [
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-keyboard",
+            "correct": true
+          },
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-browser",
+            "correct": true
+          }
+        ]
+      }
+    },
+    {
+      "query": "Browser game, must have multiplayer",
+      "qualified": [],
+      "focus": "claimed capability without evidence",
+      "baseline": {
+        "mode": "literal",
+        "model": null,
+        "retrieval": "lexical",
+        "brief": {
+          "hard": [
+            {
+              "key": "browser",
+              "expected": true
+            },
+            {
+              "key": "multiplayer",
+              "expected": true
+            }
+          ],
+          "preferences": [],
+          "ambiguities": [],
+          "maxCents": null,
+          "category": "Games"
+        },
+        "rank": [
+          "acorn-trail",
+          "example-orbit"
+        ],
+        "matches": [],
+        "citations": [
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-browser",
+            "correct": true
+          },
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-multiplayer",
+            "correct": true
+          }
+        ]
+      },
+      "hybrid": {
+        "mode": "model",
+        "model": "@cf/ibm-granite/granite-4.0-h-micro",
+        "retrieval": "hybrid",
+        "brief": {
+          "hard": [
+            {
+              "key": "browser",
+              "expected": true
+            },
+            {
+              "key": "multiplayer",
+              "expected": true
+            }
+          ],
+          "preferences": [],
+          "ambiguities": [],
+          "maxCents": null,
+          "category": "Games"
+        },
+        "rank": [
+          "acorn-trail",
+          "example-orbit"
+        ],
+        "matches": [],
+        "citations": [
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-browser",
+            "correct": true
+          },
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-multiplayer",
+            "correct": true
+          }
+        ]
+      }
+    },
+    {
+      "query": "Offline game, but it must not work offline",
+      "qualified": [],
+      "focus": "conflicting hard constraints",
+      "baseline": {
+        "mode": "literal",
+        "model": null,
+        "retrieval": "lexical",
+        "brief": {
+          "hard": [
+            {
+              "key": "offline",
+              "expected": true
+            },
+            {
+              "key": "offline",
+              "expected": false
+            }
+          ],
+          "preferences": [],
+          "ambiguities": [],
+          "maxCents": null,
+          "category": "Games"
+        },
+        "rank": [
+          "acorn-trail",
+          "example-orbit"
+        ],
+        "matches": [],
+        "citations": [
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-offline",
+            "correct": true
+          },
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-offline",
+            "correct": true
+          }
+        ]
+      },
+      "hybrid": {
+        "mode": "model",
+        "model": "@cf/ibm-granite/granite-4.0-h-micro",
+        "retrieval": "hybrid",
+        "brief": {
+          "hard": [
+            {
+              "key": "offline",
+              "expected": true
+            },
+            {
+              "key": "offline",
+              "expected": false
+            }
+          ],
+          "preferences": [],
+          "ambiguities": [],
+          "maxCents": null,
+          "category": "Games"
+        },
+        "rank": [
+          "acorn-trail",
+          "example-orbit"
+        ],
+        "matches": [],
+        "citations": [
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-offline",
+            "correct": true
+          },
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-offline",
+            "correct": true
+          }
+        ]
+      }
+    },
+    {
+      "query": "A local game with save and reload",
+      "qualified": [],
+      "focus": "untested persistence",
+      "baseline": {
+        "mode": "literal",
+        "model": null,
+        "retrieval": "lexical",
+        "brief": {
+          "hard": [
+            {
+              "key": "local",
+              "expected": true
+            },
+            {
+              "key": "persistence",
+              "expected": true
+            }
+          ],
+          "preferences": [],
+          "ambiguities": [],
+          "maxCents": null,
+          "category": "Games"
+        },
+        "rank": [
+          "acorn-trail",
+          "example-orbit"
+        ],
+        "matches": [],
+        "citations": [
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-local",
+            "correct": true
+          },
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-persistence",
+            "correct": true
+          }
+        ]
+      },
+      "hybrid": {
+        "mode": "model",
+        "model": "@cf/ibm-granite/granite-4.0-h-micro",
+        "retrieval": "hybrid",
+        "brief": {
+          "hard": [
+            {
+              "key": "local",
+              "expected": true
+            },
+            {
+              "key": "persistence",
+              "expected": true
+            }
+          ],
+          "preferences": [],
+          "ambiguities": [],
+          "maxCents": null,
+          "category": "Games"
+        },
+        "rank": [
+          "acorn-trail",
+          "example-orbit"
+        ],
+        "matches": [],
+        "citations": [
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-local",
+            "correct": true
+          },
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-persistence",
+            "correct": true
+          }
+        ]
+      }
+    },
+    {
+      "query": "A browser game under $0.01",
+      "qualified": [
+        "acorn-trail"
+      ],
+      "focus": "one cent boundary",
+      "baseline": {
+        "mode": "literal",
+        "model": null,
+        "retrieval": "lexical",
+        "brief": {
+          "hard": [
+            {
+              "key": "browser",
+              "expected": true
+            }
+          ],
+          "preferences": [],
+          "ambiguities": [],
+          "maxCents": 0,
+          "category": "Games"
+        },
+        "rank": [
+          "acorn-trail"
+        ],
+        "matches": [
+          "acorn-trail"
+        ],
+        "citations": [
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-browser",
+            "correct": true
+          }
+        ]
+      },
+      "hybrid": {
+        "mode": "model",
+        "model": "@cf/ibm-granite/granite-4.0-h-micro",
+        "retrieval": "hybrid",
+        "brief": {
+          "hard": [
+            {
+              "key": "browser",
+              "expected": true
+            },
+            {
+              "key": "no-paid-api",
+              "expected": true
+            }
+          ],
+          "preferences": [],
+          "ambiguities": [],
+          "maxCents": 0,
+          "category": "Games"
+        },
+        "rank": [
+          "acorn-trail"
+        ],
+        "matches": [
+          "acorn-trail"
+        ],
+        "citations": [
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-browser",
+            "correct": true
+          },
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-no-paid-api",
+            "correct": true
+          }
+        ]
+      }
+    },
+    {
+      "query": "Local browser game for a ₹500 budget",
+      "qualified": [],
+      "focus": "unconverted currency",
+      "baseline": {
+        "mode": "literal",
+        "model": null,
+        "retrieval": "lexical",
+        "brief": {
+          "hard": [
+            {
+              "key": "local",
+              "expected": true
+            },
+            {
+              "key": "browser",
+              "expected": true
+            }
+          ],
+          "preferences": [],
+          "ambiguities": [
+            "Confirm a USD budget."
+          ],
+          "maxCents": null,
+          "category": "Games"
+        },
+        "rank": [
+          "acorn-trail",
+          "example-orbit"
+        ],
+        "matches": [],
+        "citations": [
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-local",
+            "correct": true
+          },
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-browser",
+            "correct": true
+          }
+        ]
+      },
+      "hybrid": {
+        "mode": "model",
+        "model": "@cf/ibm-granite/granite-4.0-h-micro",
+        "retrieval": "hybrid",
+        "brief": {
+          "hard": [
+            {
+              "key": "local",
+              "expected": true
+            },
+            {
+              "key": "browser",
+              "expected": true
+            }
+          ],
+          "preferences": [
+            {
+              "key": "no-paid-api",
+              "expected": true
+            }
+          ],
+          "ambiguities": [
+            "Confirm a USD budget.",
+            "The buyer's budget is mentioned in Indian Rupees (₹500), but the output requires the cap in USD cents. The conversion rate between Indian Ru"
+          ],
+          "maxCents": null,
+          "category": "Games"
+        },
+        "rank": [
+          "acorn-trail",
+          "example-orbit"
+        ],
+        "matches": [],
+        "citations": [
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-local",
+            "correct": true
+          },
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-browser",
+            "correct": true
+          }
+        ]
+      }
+    },
+    {
+      "query": "A UI kit with browser-based keyboard navigation",
+      "qualified": [],
+      "focus": "category and unknown capability",
+      "baseline": {
+        "mode": "literal",
+        "model": null,
+        "retrieval": "lexical",
+        "brief": {
+          "hard": [
+            {
+              "key": "keyboard",
+              "expected": true
+            },
+            {
+              "key": "browser",
+              "expected": true
+            }
+          ],
+          "preferences": [],
+          "ambiguities": [],
+          "maxCents": null,
+          "category": "UI kits"
+        },
+        "rank": [
+          "example-fieldnotes"
+        ],
+        "matches": [],
+        "citations": []
+      },
+      "hybrid": {
+        "mode": "model",
+        "model": "@cf/ibm-granite/granite-4.0-h-micro",
+        "retrieval": "hybrid",
+        "brief": {
+          "hard": [
+            {
+              "key": "keyboard",
+              "expected": true
+            },
+            {
+              "key": "browser",
+              "expected": true
+            }
+          ],
+          "preferences": [],
+          "ambiguities": [],
+          "maxCents": null,
+          "category": "UI kits"
+        },
+        "rank": [
+          "example-fieldnotes"
+        ],
+        "matches": [],
+        "citations": []
+      }
+    },
+    {
+      "query": "Offline game, prefer multiplayer",
+      "qualified": [
+        "acorn-trail"
+      ],
+      "focus": "unproven preference does not disqualify",
+      "baseline": {
+        "mode": "literal",
+        "model": null,
+        "retrieval": "lexical",
+        "brief": {
+          "hard": [
+            {
+              "key": "offline",
+              "expected": true
+            }
+          ],
+          "preferences": [
+            {
+              "key": "multiplayer",
+              "expected": true
+            }
+          ],
+          "ambiguities": [],
+          "maxCents": null,
+          "category": "Games"
+        },
+        "rank": [
+          "example-orbit",
+          "acorn-trail"
+        ],
+        "matches": [
+          "acorn-trail"
+        ],
+        "citations": [
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-offline",
+            "correct": true
+          }
+        ]
+      },
+      "hybrid": {
+        "mode": "model",
+        "model": "@cf/ibm-granite/granite-4.0-h-micro",
+        "retrieval": "hybrid",
+        "brief": {
+          "hard": [
+            {
+              "key": "offline",
+              "expected": true
+            }
+          ],
+          "preferences": [
+            {
+              "key": "multiplayer",
+              "expected": true
+            }
+          ],
+          "ambiguities": [],
+          "maxCents": null,
+          "category": "Games"
+        },
+        "rank": [
+          "acorn-trail",
+          "example-orbit"
+        ],
+        "matches": [
+          "acorn-trail"
+        ],
+        "citations": [
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-offline",
+            "correct": true
+          }
+        ]
+      }
+    },
+    {
+      "query": "I need a game with mobile controls",
+      "qualified": [],
+      "focus": "untested input method",
+      "baseline": {
+        "mode": "literal",
+        "model": null,
+        "retrieval": "lexical",
+        "brief": {
+          "hard": [
+            {
+              "key": "mobile",
+              "expected": true
+            }
+          ],
+          "preferences": [],
+          "ambiguities": [],
+          "maxCents": null,
+          "category": "Games"
+        },
+        "rank": [
+          "acorn-trail",
+          "example-orbit"
+        ],
+        "matches": [],
+        "citations": [
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-mobile",
+            "correct": true
+          }
+        ]
+      },
+      "hybrid": {
+        "mode": "model",
+        "model": "@cf/ibm-granite/granite-4.0-h-micro",
+        "retrieval": "hybrid",
+        "brief": {
+          "hard": [
+            {
+              "key": "mobile",
+              "expected": true
+            }
+          ],
+          "preferences": [],
+          "ambiguities": [],
+          "maxCents": null,
+          "category": "Games"
+        },
+        "rank": [
+          "acorn-trail",
+          "example-orbit"
+        ],
+        "matches": [],
+        "citations": [
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-mobile",
+            "correct": true
+          }
+        ]
+      }
+    },
+    {
+      "query": "A Godot game that runs locally",
+      "qualified": [],
+      "focus": "named engine without evidence",
+      "baseline": {
+        "mode": "literal",
+        "model": null,
+        "retrieval": "lexical",
+        "brief": {
+          "hard": [
+            {
+              "key": "local",
+              "expected": true
+            }
+          ],
+          "preferences": [],
+          "ambiguities": [
+            "Confirm the platform or stack requirement against the release evidence."
+          ],
+          "maxCents": null,
+          "category": "Games"
+        },
+        "rank": [
+          "acorn-trail",
+          "example-orbit"
+        ],
+        "matches": [],
+        "citations": [
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-local",
+            "correct": true
+          }
+        ]
+      },
+      "hybrid": {
+        "mode": "model",
+        "model": "@cf/ibm-granite/granite-4.0-h-micro",
+        "retrieval": "hybrid",
+        "brief": {
+          "hard": [
+            {
+              "key": "local",
+              "expected": true
+            }
+          ],
+          "preferences": [],
+          "ambiguities": [
+            "Confirm the platform or stack requirement against the release evidence."
+          ],
+          "maxCents": null,
+          "category": "Games"
+        },
+        "rank": [
+          "acorn-trail",
+          "example-orbit"
+        ],
+        "matches": [],
+        "citations": [
+          {
+            "release": "acorn-trail",
+            "evidenceId": "ev-87e194d0bdab-local",
+            "correct": true
+          }
+        ]
+      }
+    }
+  ]
+}

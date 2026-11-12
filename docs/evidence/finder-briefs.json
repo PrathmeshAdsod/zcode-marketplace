@@ -1,0 +1,18 @@
+[
+  {"id":"classroom","query":"I need a game in a browser. The classroom Wi-Fi may be switched off after setup, and the arrow keys would be nice. I can spend $60 once and can't have an API bill every month.","hard":["browser:+","offline:+","no-paid-api:+"],"soft":["keyboard:+"],"maxCents":6000,"clarify":false,"qualified":["acorn-trail"]},
+  {"id":"network-required","query":"The game must never run without an internet connection. Keyboard controls would be a bonus.","hard":["offline:-"],"soft":["keyboard:+"],"maxCents":null,"clarify":false,"qualified":[]},
+  {"id":"airplane","query":"I want a game my daughter can play in airplane mode after installation. Touch controls would be a bonus.","hard":["offline:+"],"soft":["mobile:+"],"maxCents":null,"clarify":false,"qualified":["acorn-trail"]},
+  {"id":"save","query":"I need a game that lets me close the tab mid-session and pick up exactly where I left off tomorrow.","hard":["persistence:+"],"soft":[],"maxCents":null,"clarify":false,"qualified":[]},
+  {"id":"shared","query":"Two people on separate computers must be able to play together at the same time.","hard":["multiplayer:+"],"soft":[],"maxCents":null,"clarify":false,"qualified":[]},
+  {"id":"local","query":"I need a game that runs on my laptop's own server. Access over the public internet is optional.","hard":["local:+"],"soft":[],"maxCents":null,"clarify":false,"qualified":["acorn-trail"]},
+  {"id":"irrelevant","query":"I don't need multiplayer. A game I can play in Chrome is mandatory.","hard":["browser:+"],"soft":[],"maxCents":null,"clarify":false,"qualified":["acorn-trail"]},
+  {"id":"stack","query":"This must integrate with our existing Godot project. Local play is optional.","hard":["stack:godot:+"],"soft":["local:+"],"maxCents":null,"clarify":false,"qualified":[]},
+  {"id":"stack-exclusion","query":"I need a browser game. It must not depend on Node.js.","hard":["browser:+","stack:node.js:-"],"soft":[],"maxCents":null,"clarify":false,"qualified":[]},
+  {"id":"monthly","query":"The software must fit a $25 per month operating budget. The upfront license has no cap.","hard":["recurring-budget:2500:+"],"soft":[],"maxCents":null,"clarify":false,"qualified":[]},
+  {"id":"budget-boundary","query":"A browser game for strictly less than $0.01.","hard":["browser:+"],"soft":[],"maxCents":0,"clarify":false,"qualified":["acorn-trail"]},
+  {"id":"budget-unclear","query":"I need a browser game with a budget of 50.","hard":["browser:+"],"soft":[],"maxCents":null,"clarify":true,"qualified":[]},
+  {"id":"free-setup","query":"I need a game I can play without internet, but installation may use the network.","hard":["offline:+"],"soft":[],"maxCents":null,"clarify":false,"qualified":["acorn-trail"]},
+  {"id":"cost-ambiguity","query":"A browser game. It needs to be cheap enough to run.","hard":["browser:+"],"soft":[],"maxCents":null,"clarify":true,"qualified":[]},
+  {"id":"conflict","query":"The game must work offline. It also must never work offline.","hard":["offline:+","offline:-"],"soft":[],"maxCents":null,"clarify":true,"qualified":[]},
+  {"id":"preference","query":"I need a browser game. Ideally I wouldn't be locked into a paid API, but that's negotiable.","hard":["browser:+"],"soft":["no-paid-api:+"],"maxCents":null,"clarify":false,"qualified":["acorn-trail"]}
+]

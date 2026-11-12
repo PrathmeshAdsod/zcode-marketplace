@@ -1,0 +1,14 @@
+{
+  "origin": "http://127.0.0.1:8788",
+  "chrome": "157.0.8103.40",
+  "date": "2026-11-12T01:43:28.082Z",
+  "results": [
+    "Desktop storefront and keyboard skip link",
+    "Hosted-safe SPA refresh and direct link to release-specific evidence",
+    "Both videos load and browser download matches isolated runner checksum",
+    "Two-release comparison distinguishes observed and unknown offline behavior",
+    "Distinct local seller, reviewer and buyer sessions; persisted seller draft; role-separated navigation",
+    "Usage dashboard denies buyers and records administrator pause and recovery",
+    "390px mobile viewport has no page overflow on home, release and browse"
+  ]
+}

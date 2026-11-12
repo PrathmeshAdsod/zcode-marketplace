@@ -1,0 +1,40 @@
+{
+  "name": "zcode-marketplace",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "npm run build && wrangler pages dev dist --ip 127.0.0.1 --port 8788",
+    "dev:web": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "typecheck": "tsc --noEmit",
+    "db:local": "wrangler d1 migrations apply DB --local",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "evaluate": "node scripts/evaluate.mjs",
+    "verify": "python runner/verify.py"
+  },
+  "dependencies": {
+    "@fontsource-variable/dm-sans": "^5.3.0",
+    "@fontsource-variable/geist": "^5.3.0",
+    "@fontsource/instrument-serif": "^5.3.0",
+    "@google/genai": "3.2.0",
+    "hono": "^4.13.18",
+    "lucide-react": "^1.72.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-router-dom": "^7.18.5"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261110.1",
+    "@playwright/test": "^1.65.0",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "miniflare": "5.20261110.1-beta",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8",
+    "wrangler": "^4.160.1"
+  }
+}

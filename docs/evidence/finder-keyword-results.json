@@ -1,0 +1,505 @@
+{
+  "date": "2026-11-12T03:32:12.225Z",
+  "catalog": [
+    "acorn-trail:1.0.0:87e194d0bdab68a3de22480e304720fd1683e19db78f337294bd23fb7da56105:0",
+    "example-fieldnotes:1.0.0::3500",
+    "example-orbit:1.0.0::4900"
+  ],
+  "totals": {
+    "briefs": 16,
+    "completed": 16,
+    "extractionExact": 9,
+    "qualificationExact": 14,
+    "falseQualified": 1,
+    "top3Qualified": 7,
+    "top1Qualified": 7,
+    "liveGemini": 0,
+    "positiveBriefs": 7,
+    "validCitations": 16,
+    "citations": 16,
+    "sources": [
+      "literal"
+    ]
+  },
+  "rows": [
+    {
+      "id": "classroom",
+      "mode": "literal",
+      "source": "literal",
+      "hard": [
+        "browser:+",
+        "keyboard:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-keyboard",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": true,
+      "top1Qualified": true,
+      "literalQuotes": true
+    },
+    {
+      "id": "network-required",
+      "mode": "literal",
+      "source": "literal",
+      "hard": [
+        "keyboard:+",
+        "offline:-"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [],
+      "rank": [
+        "example-orbit",
+        "acorn-trail"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-keyboard",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-offline",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": null,
+      "top1Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "airplane",
+      "mode": "literal",
+      "source": "literal",
+      "hard": [
+        "mobile:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-mobile",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": false,
+      "falseQualified": [],
+      "top3Qualified": true,
+      "top1Qualified": true,
+      "literalQuotes": true
+    },
+    {
+      "id": "save",
+      "mode": "literal",
+      "source": "literal",
+      "hard": [],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [],
+      "extractionExact": false,
+      "qualificationExact": false,
+      "falseQualified": [
+        "acorn-trail"
+      ],
+      "top3Qualified": null,
+      "top1Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "shared",
+      "mode": "literal",
+      "source": "literal",
+      "hard": [],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [],
+      "rank": [
+        "acorn-trail",
+        "example-orbit",
+        "example-fieldnotes"
+      ],
+      "checks": [],
+      "extractionExact": false,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": null,
+      "top1Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "local",
+      "mode": "literal",
+      "source": "literal",
+      "hard": [
+        "local:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-local",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": true,
+      "top1Qualified": true,
+      "literalQuotes": true
+    },
+    {
+      "id": "irrelevant",
+      "mode": "literal",
+      "source": "literal",
+      "hard": [
+        "browser:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": true,
+      "top1Qualified": true,
+      "literalQuotes": true
+    },
+    {
+      "id": "stack",
+      "mode": "literal",
+      "source": "literal",
+      "hard": [],
+      "soft": [
+        "local:+"
+      ],
+      "maxCents": null,
+      "clarify": true,
+      "matches": [],
+      "rank": [
+        "acorn-trail",
+        "example-orbit",
+        "example-fieldnotes"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-local",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": null,
+      "top1Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "stack-exclusion",
+      "mode": "literal",
+      "source": "literal",
+      "hard": [
+        "browser:+",
+        "stack:node.js:-"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": null,
+      "top1Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "monthly",
+      "mode": "literal",
+      "source": "literal",
+      "hard": [
+        "recurring-budget:2500:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [],
+      "rank": [
+        "acorn-trail",
+        "example-orbit",
+        "example-fieldnotes"
+      ],
+      "checks": [],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": null,
+      "top1Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "budget-boundary",
+      "mode": "literal",
+      "source": "literal",
+      "hard": [
+        "browser:+"
+      ],
+      "soft": [],
+      "maxCents": 0,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": true,
+      "top1Qualified": true,
+      "literalQuotes": true
+    },
+    {
+      "id": "budget-unclear",
+      "mode": "literal",
+      "source": "literal",
+      "hard": [
+        "browser:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": true,
+      "matches": [],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": null,
+      "top1Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "free-setup",
+      "mode": "literal",
+      "source": "literal",
+      "hard": [
+        "offline:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-offline",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": true,
+      "top1Qualified": true,
+      "literalQuotes": true
+    },
+    {
+      "id": "cost-ambiguity",
+      "mode": "literal",
+      "source": "literal",
+      "hard": [
+        "browser:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": true,
+      "matches": [],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": null,
+      "top1Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "conflict",
+      "mode": "literal",
+      "source": "literal",
+      "hard": [
+        "offline:+",
+        "offline:-"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": true,
+      "matches": [],
+      "rank": [
+        "example-orbit",
+        "acorn-trail"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-offline",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-offline",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": null,
+      "top1Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "preference",
+      "mode": "literal",
+      "source": "literal",
+      "hard": [
+        "browser:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": true,
+      "top1Qualified": true,
+      "literalQuotes": true
+    }
+  ]
+}
