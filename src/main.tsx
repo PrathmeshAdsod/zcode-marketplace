@@ -14,7 +14,7 @@ import { CostAdmin } from './cost-admin';
 import { Landing } from './landing';
 import { MagneticCursor } from './magnetic-cursor';
 
-export type Account = { id: string; name: string; role: 'member' | 'reviewer' };
+export type Account = { id: string; name: string; role: 'member' | 'reviewer' | 'release-reviewer' };
 type Session = { account: Account | null; localDemo: boolean; githubConfigured: boolean; isCostAdmin: boolean; costAlerts?: number };
 type AppState = { session: Session | null; refresh: () => void; compared: string[]; compare: (id: string) => void };
 const AppContext = createContext<AppState>({ session: null, refresh: () => {}, compared: [], compare: () => {} });
@@ -59,7 +59,7 @@ export function RequireAccount({ children, reviewer = false, administrator = fal
     {!session.githubConfigured && !session.localDemo && <p>GitHub sign-in is awaiting operator setup. You can still browse the catalog.</p>}
     {error && <p role="alert" className="notice error">{error}</p>}
   </section>;
-  if (reviewer && session.account.role !== 'reviewer') return <section className="empty"><h2>Reviewer access required</h2><p>Use the reviewer identity to open this workspace.</p></section>;
+  if (reviewer && session.account.role === 'member') return <section className="empty"><h2>Reviewer access required</h2><p>Use the reviewer identity to open this workspace.</p></section>;
   return <>{children}</>;
 }
 function Header() {
@@ -95,7 +95,7 @@ function Header() {
       </form>
       <nav className="account-nav" aria-label="Workspace">
         <NavLink to="/studio">Seller studio</NavLink>
-        {session?.account?.role === 'reviewer' && <NavLink to="/review">Review desk</NavLink>}
+        {session?.account && session.account.role !== 'member' && <NavLink to="/review">Review desk</NavLink>}
         {session?.isCostAdmin && <NavLink to="/admin/usage">Usage{session.costAlerts ? ' (' + session.costAlerts + ')' : ''}</NavLink>}
         <NavLink to="/library" className="library-nav"><ShoppingBag size={16}/><span>Library</span></NavLink>
         <AccountMenu/>

@@ -26,6 +26,8 @@ Pass the private bucket name as the fourth argument to `prepare-pages.mjs` when 
 
 For Gemini, confirm billing is disabled and read the actual model limits in the dedicated project's AI Studio rate limits view. Set `GEMINI_API_KEY` as an encrypted Pages secret restricted to the Gemini Developer API. Set `GEMINI_FREE_RPM`, `GEMINI_FREE_TPM`, and `GEMINI_FREE_RPD` in the shell that runs `prepare-pages.mjs`. These are provider limits before Zcode applies its own reserves. The current project shows 15, 250000, and 500 respectively. Confirm the current limits again for any replacement project.
 
+For a guest reviewer, set `ZCODE_RELEASE_REVIEW_ASSIGNMENTS` in that shell before preparing each deployment. Use comma-separated `github-id:release-uuid` pairs. A guest reviewer can decide the assigned release in the Review Desk. Support cases and release holds require the full reviewer role. Remove the assignment on the next deployment when access is no longer needed.
+
 ### Owner actions for the real Sandbox journey
 
 1. For a new deployment, in [Cloudflare Dashboard](https://dash.cloudflare.com/), open **R2 Object Storage** for the Pages account and review activation. Use a Standard private bucket and verify `privateStorage: true` in health. The Zcode production bucket has already been provisioned.

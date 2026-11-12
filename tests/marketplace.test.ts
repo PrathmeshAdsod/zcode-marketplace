@@ -213,7 +213,20 @@ test('leased runner fetches pinned bytes; an independent reviewer publishes exac
   await env.DB.prepare('UPDATE repo_connections SET revoked_at=unixepoch() WHERE seller_id=? AND repo_id=101').bind(sellers[0]).run();
   await ok(req('/reviews/' + release, 'POST', { decision: 'published', reason: 'Both videos and the clean run are acceptable.', mediaReviewed: true }, reviewer), 409);
   await env.DB.prepare('UPDATE repo_connections SET revoked_at=NULL WHERE seller_id=? AND repo_id=101').bind(sellers[0]).run();
-  await ok(req('/reviews/' + release, 'POST', { decision: 'published', reason: 'Both videos and the clean run are acceptable.', mediaReviewed: true }, reviewer));
+  const unrelated = await env.DB.prepare("UPDATE releases SET status='review' WHERE repo_id=102 RETURNING id").first<string>('id');
+  assert.ok(unrelated);
+  env.RELEASE_REVIEW_ASSIGNMENTS = other + ':' + release;
+  try {
+    const desk = await ok<{ releases: { id: string }[] }>(req('/reviews', 'GET', undefined, other));
+    assert.deepEqual(desk.releases.map(item => item.id), [release]);
+    await ok(req('/reviews/' + unrelated, 'POST', { decision: 'rejected', reason: 'Unrelated to this assignment.' }, other), 404);
+    await ok(req('/support/desk', 'GET', undefined, other), 403);
+    await ok(req('/reviews/' + release, 'POST', { decision: 'published', reason: 'Both videos and the clean run are acceptable.', mediaReviewed: true }, other));
+  } finally {
+    delete env.RELEASE_REVIEW_ASSIGNMENTS;
+    await env.DB.prepare("UPDATE releases SET status='queued' WHERE id=?").bind(unrelated).run();
+  }
+  await ok(req('/reviews', 'GET', undefined, other), 403);
   const publicItem = await ok(req('/catalog/' + release));
   assert.equal(publicItem.digest, releaseDigest);
   assert.equal(publicItem.purchasable, true);

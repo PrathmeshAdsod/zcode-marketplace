@@ -6,13 +6,13 @@ export type Env = {
   APP_ORIGIN?: string; LOCAL_DEMO?: string;
   GITHUB_APP_SLUG?: string; GITHUB_APP_ID?: string; GITHUB_CLIENT_ID?: string;
   GITHUB_CLIENT_SECRET?: string; GITHUB_PRIVATE_KEY?: string; GITHUB_WEBHOOK_SECRET?: string;
-  REVIEWER_GITHUB_IDS?: string; TEAM_SELLER_GITHUB_ID?: string;
+  REVIEWER_GITHUB_IDS?: string; RELEASE_REVIEW_ASSIGNMENTS?: string; TEAM_SELLER_GITHUB_ID?: string;
   PAYPAL_CLIENT_ID?: string; PAYPAL_CLIENT_SECRET?: string; PAYPAL_MERCHANT_ID?: string;
   PAYPAL_WEBHOOK_ID?: string; OPERATOR_TOKEN?: string; RUNNER_TOKEN?: string;
   OLLAMA_URL?: string; OLLAMA_MODEL?: string; OLLAMA_EMBED_MODEL?: string;
   GEMINI_API_KEY?: string; GEMINI_FREE_RPM?: string; GEMINI_FREE_TPM?: string; GEMINI_FREE_RPD?: string;
 };
-export type Actor = { id: string; name: string; role: 'member' | 'reviewer' };
+export type Actor = { id: string; name: string; role: 'member' | 'reviewer' | 'release-reviewer' };
 export type AppEnv = { Bindings: Env; Variables: { actor: Actor | null } };
 export type Ctx = Context<AppEnv>;
 export class Problem extends Error {
@@ -52,6 +52,12 @@ export function actor(c: Ctx, reviewer = false) {
   assert(!reviewer || account.role === 'reviewer', 403, 'Reviewer access is required.');
   return account;
 }
+export function assignedReleases(env: Env, accountId: string) {
+  return (env.RELEASE_REVIEW_ASSIGNMENTS ?? '').split(',').flatMap(entry => {
+    const match = /^(\d+):([a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12})$/.exec(entry.trim());
+    return match?.[1] === accountId ? [match[2]] : [];
+  });
+}
 export function operator(c: Ctx) {
   assert(c.env.OPERATOR_TOKEN && c.env.OPERATOR_TOKEN.length >= 32 &&
     equal(c.req.header('authorization') ?? '', 'Bearer ' + c.env.OPERATOR_TOKEN), 403, 'Operator access is required.');
@@ -74,7 +80,8 @@ export async function identify(c: Ctx) {
   const row = await c.env.DB.prepare('SELECT a.id,a.name,a.role FROM accounts a JOIN sessions s ON a.id=s.account_id WHERE s.token_hash=? AND s.expires_at>?')
     .bind(await sha256(token), seconds()).first<Actor>();
   if (row && !row.id.startsWith('demo-')) {
-    row.role = (c.env.REVIEWER_GITHUB_IDS ?? '').split(',').map(id => id.trim()).includes(row.id) ? 'reviewer' : 'member';
+    row.role = (c.env.REVIEWER_GITHUB_IDS ?? '').split(',').map(id => id.trim()).includes(row.id) ? 'reviewer'
+      : assignedReleases(c.env, row.id).length ? 'release-reviewer' : 'member';
   }
   return row;
 }

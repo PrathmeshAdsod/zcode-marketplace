@@ -1,5 +1,5 @@
 import { Hono } from 'hono';
-import { actor, assert, readJSON, str, throttle, uuid, type AppEnv } from './common';
+import { actor, assert, assignedReleases, readJSON, str, throttle, uuid, type AppEnv, type Ctx } from './common';
 import { draftFrom, releaseSelect, validateSubmission, type ReleaseRow } from './catalog';
 import { freezeCommit, type Connection } from './github';
 import type { Draft, Report } from '../src/domain';
@@ -83,14 +83,24 @@ sellerRoutes.post('/listings/:id/archive', async c => {
 });
 
 export const reviewRoutes = new Hono<AppEnv>();
+function reviewScope(c: Ctx) {
+  const reviewer = actor(c);
+  assert(reviewer.role === 'reviewer' || reviewer.role === 'release-reviewer', 403, 'Reviewer access is required.');
+  const releaseIds = reviewer.role === 'release-reviewer' ? assignedReleases(c.env, reviewer.id) : null;
+  return { reviewer, releaseIds };
+}
 reviewRoutes.get('/', async c => {
-  const reviewer = actor(c, true);
-  const result = await c.env.DB.prepare(releaseSelect + " WHERE r.status='review' AND l.seller_id<>? ORDER BY r.created_at LIMIT 40").bind(reviewer.id).all<ReleaseRow>();
+  const { reviewer, releaseIds } = reviewScope(c);
+  const scope = releaseIds ? JSON.stringify(releaseIds) : null;
+  const result = await c.env.DB.prepare(releaseSelect +
+    " WHERE r.status='review' AND l.seller_id<>? AND (? IS NULL OR r.id IN (SELECT value FROM json_each(?))) ORDER BY r.created_at LIMIT 40")
+    .bind(reviewer.id, scope, scope).all<ReleaseRow>();
   return c.json({ releases: result.results.map(row => ({ id: row.id, seller: row.seller, commit: row.commit_sha, draft: JSON.parse(row.snapshot), report: row.report && JSON.parse(row.report) })) });
 });
 reviewRoutes.post('/:id', async c => {
-  const reviewer = actor(c, true);
+  const { reviewer, releaseIds } = reviewScope(c);
   const id = c.req.param('id');
+  assert(!releaseIds || releaseIds.includes(id), 404, 'Review not found.');
   const input = await readJSON(c);
   const decision = str(input.decision);
   const reason = str(input.reason, 1000);

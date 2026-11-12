@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, ClipboardCheck, FolderGit2, GitBranch, PackagePlus, ShieldCheck } from 'lucide-react';
 import { api, message, useRemote } from './api';
 import { blankDraft, categories, type Draft, type Report } from './domain';
-import { RequireAccount } from './main';
+import { RequireAccount, useApp } from './main';
 import { LoadState, Passport, Video } from './market';
 
 type Listing = { id: string; revision: number; draft: Draft; status: string | null; slot: number | null; report: Report | null; reason: string | null; active_release: string | null };
@@ -113,17 +113,19 @@ export function ReviewDesk() {
   return <><div className="page-head"><div className="eyebrow"><ShieldCheck size={17}/> Editorial workspace</div><h1>Review desk</h1><p>Check the two recordings, distribution terms and evidence before publication.</p></div><RequireAccount reviewer><ReviewContents/></RequireAccount></>;
 }
 function ReviewContents() {
+  const { session } = useApp();
   const review = useRemote<{ releases: Review[] }>('/reviews');
-  const support = useRemote<{ cases: Case[] }>('/support/desk');
+  const canReviewSupport = session?.account?.role === 'reviewer';
+  const support = useRemote<{ cases: Case[] }>(canReviewSupport ? '/support/desk' : null);
   return <div className="stack">
     {!review.data && <LoadState error={review.error} retry={review.refresh}/>}
     {review.data?.releases.length === 0 && <section className="empty"><h2>No releases awaiting review</h2><p>Completed verification jobs will appear here.</p></section>}
     {review.data?.releases.map(item => <ReviewCard key={item.id} item={item} refresh={review.refresh}/>)}
-    <section className="panel"><h2>Support cases</h2>
+    {canReviewSupport && <section className="panel"><h2>Support cases</h2>
       {!support.data && <LoadState error={support.error} retry={support.refresh}/>}
       {support.data?.cases.length === 0 && <p className="muted">No open cases.</p>}
       {support.data?.cases.map(item => <SupportCard key={item.id} item={item} refresh={support.refresh}/>)}
-    </section>
+    </section>}
   </div>;
 }
 function ReviewCard({ item, refresh }: { item: Review; refresh: () => void }) {
