@@ -63,10 +63,10 @@ app.post('/session/logout', async c => {
   setCookie(c, 'zsession', '', 0);
   return c.json({ account: null });
 });
-app.get('/catalog', async c => c.json({ releases: await listCatalog(c.env) }));
+app.get('/catalog', async c => c.json({ releases: await listCatalog(c.env, local(c)) }));
 app.get('/catalog/:id', async c => {
   const id = c.req.param('id');
-  const sample = samples.find(item => item.id === id);
+  const sample = samples.find(item => item.id === id && (!item.fixture || local(c)));
   if (sample) return c.json(sample);
   const row = await c.env.DB.prepare(releaseSelect + " WHERE r.id=? AND r.status='published'").bind(id).first<ReleaseRow>();
   assert(row, 404, 'This release is unavailable.');
@@ -81,7 +81,7 @@ app.post('/search', async c => {
   const apply = body.brief && typeof body.brief === 'object';
   if (!baseline && query) await throttle(c, 'search', c.get('actor')?.id ?? byIP(c), 30, 300);
   const result = apply ? { brief: normalize(body.brief), mode: 'edited', model: null } : { brief: literalBrief(query), mode: 'literal', model: null };
-  return c.json({ ...result, ...await rank(c, await listCatalog(c.env), query, result.brief, true) });
+  return c.json({ ...result, ...await rank(c, await listCatalog(c.env, local(c)), query, result.brief, true) });
 });
 app.get('/checkout/config', async c => {
   actor(c);

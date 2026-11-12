@@ -130,7 +130,7 @@ export function ReleaseDetail() {
           {item.purchasable ? <Link className="button primary full" to={checkoutPath(item)}>Review license and checkout <ArrowRight size={17}/></Link> :
             item.sampleDownload ? <a className="button primary full" href={item.sampleDownload} download><ArrowDownToLine size={17}/> Download sample ZIP</a> :
             <p className="notice">{item.fixture ? 'Example listing for comparison.' : 'Seller checkout is awaiting merchant eligibility.'}</p>}
-          {item.demo && <a className="button secondary full" href={item.demo} target="_blank" rel="noreferrer"><Play size={15}/> Play in browser</a>}
+          {item.demo && <a className="button secondary full" href={item.demo} target="_blank" rel="noreferrer"><Play size={15}/> Open in browser</a>}
           <button className="button secondary full" aria-pressed={selected} disabled={!selected && compared.length === 3} onClick={() => compare(item.id)}><GitCompareArrows size={16}/> {selected ? 'Remove from comparison' : 'Add to comparison'}</button>
         </section>
         <section className="panel install-card"><h2>Setup and costs</h2><p className="preserve">{item.setup}</p><p>{item.costs}</p>

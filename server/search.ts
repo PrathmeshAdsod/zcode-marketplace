@@ -13,6 +13,10 @@ const patterns: Record<Capability, RegExp> = {
   'multiplayer': /\b(?:multi.player|multiplayer|co.op)\b/i,
   'persistence': /\b(?:persistence|save(?:s| game)?|reload)\b/i,
   'mobile': /\b(?:mobile|touch|phone)\b/i,
+  'csv-inspection': /\b(?:inspect(?:ion)?|check) (?:the )?csv structure\b/i,
+  'csv-validation': /\b(?:validate csv values|validate (?:a )?csv against (?:column )?rules|csv validation)\b/i,
+  'csv-iso-date': /\b(?:check|validate|reject) (?:invalid |bad )?(?:iso )?dates\b/i,
+  'schema-export': /\b(?:reusable csv contract|export (?:a )?csv (?:schema|contract))\b/i,
 };
 const categoryPatterns = [
   /\b(?:games?|gameplay|platformer|puzzle)\b/i, /\b(?:web apps?|saas|dashboard)\b/i,

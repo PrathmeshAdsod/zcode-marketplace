@@ -19,6 +19,9 @@ from pathlib import Path, PurePosixPath
 MAX_SOURCE = 8 * 1024 * 1024
 MAX_UNPACKED = 25 * 1024 * 1024
 IMAGE = "zcode-runner:1"
+TRAIL = "node-browser-trail/1"
+CSV_INSPECT = "node-browser-csv-inspect/1"
+CSV_STUDIO = "node-browser-csv-studio/1"
 FIXED_DATE = (2026, 11, 12, 0, 0, 0)
 SUSPECT = re.compile(rb"-----BEGIN (?:[A-Z ]+ )?PRIVATE KEY-----|\bgh[pousr]_[A-Za-z0-9]{25,}|\bAKIA[A-Z0-9]{16}|\bsk-(?:proj-)?[A-Za-z0-9_-]{25,}")
 EXCLUDED = {".git", "node_modules", "__pycache__", "dist", ".wrangler", ".vercel", ".idea", ".vscode", ".github"}
@@ -111,7 +114,7 @@ def package(data, strip_root):
     return output.getvalue()
 
 
-def evaluate(archive, image):
+def evaluate(archive, image, adapter=TRAIL):
     image_id = subprocess.check_output(["docker", "image", "inspect", "--format", "{{.Id}}", image], text=True, timeout=15).strip()
     if not re.fullmatch(r"sha256:[a-f0-9]{64}", image_id):
         raise Blocked("Could not identify the trusted runner image.")
@@ -126,7 +129,7 @@ def evaluate(archive, image):
                    "--cap-drop", "ALL", "--security-opt", "no-new-privileges", "--pids-limit", "150",
                    "--memory", "800m", "--cpus", "1.5", "--shm-size", "64m", "--ulimit", "nofile=1024:1024",
                    "--tmpfs", "/tmp:rw,nosuid,nodev,size=256m,mode=1777",
-                   "--mount", f"type=bind,src={tmp},dst=/source,readonly", image_id]
+                   "--mount", f"type=bind,src={tmp},dst=/source,readonly", image_id, adapter]
         try:
             job = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, timeout=60, check=False)
             if job.returncode == 0 and len(job.stdout) < 1000:
@@ -137,7 +140,7 @@ def evaluate(archive, image):
             subprocess.run(["docker", "rm", "-f", name], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=12, check=False)
     core = result.get("observed") is True and result.get("phase") == "complete"
     phase = result.get("phase")
-    if core:
+    if core and adapter == TRAIL:
         observations = {
             "local": ("pass", "Installed the delivered ZIP with npm ci and started its localhost server in a clean container."),
             "offline": ("pass", "Completed setup and gameplay with container networking disabled."),
@@ -145,11 +148,31 @@ def evaluate(archive, image):
             "keyboard": ("pass", "Used Enter and Arrow Right to collect three acorns and complete the trail."),
             "browser": ("pass", "Chromium rendered the game and observed its trail completion state."),
         }
+    elif core:
+        observations = {
+            "local": ("pass", "Installed the delivered ZIP with npm ci and started its localhost server in a clean container."),
+            "browser": ("pass", "Chromium opened the released tool and processed a CSV uploaded through the file input."),
+            "offline": ("pass", "Processed the CSV and downloaded JSON results with container networking disabled."),
+            "no-paid-api": ("pass", "The tested CSV workflow completed without network access or API credentials."),
+            "csv-inspection": ("pass", "Uploaded a CSV with a short record and confirmed its row number in the downloaded JSON report."),
+        }
+        if adapter == CSV_STUDIO:
+            observations.update({
+                "csv-validation": ("pass", "Found a duplicate ID, malformed email, nonnumeric amount and missing required amount in a three-row CSV."),
+                "schema-export": ("pass", "Exported a three-column JSON contract, reloaded the browser, imported the contract and validated a corrected file."),
+            })
+        else:
+            observations.update({
+                "csv-validation": ("fail", "Inspect reports CSV structure. The tested release exposes no contract form or validation module."),
+                "schema-export": ("fail", "Inspect exports a structural report. The tested release exposes no contract form or export action."),
+            })
     else:
-        status = "fail" if phase in {"install", "startup", "play"} else "inconclusive"
+        status = "fail" if phase in {"install", "startup", "play", "inspection", "contract"} else "inconclusive"
         notes = {"install": "Offline clean install failed. Include every required dependency or supply an approved cache.",
                  "startup": "The documented start command did not open localhost port 4173.",
-                 "play": "The browser did not observe the expected transition after keyboard input."}
+                 "play": "The browser did not observe the expected transition after keyboard input.",
+                 "inspection": "The browser did not observe the expected CSV inspection result.",
+                 "contract": "The browser did not observe the expected validation and contract round trip."}
         observations = {"local": (status, notes.get(phase, "The isolated browser probe could not complete."))}
     observations.update({
         "multiplayer": ("untested", "The runner exercised one browser session."),
@@ -157,7 +180,7 @@ def evaluate(archive, image):
         "mobile": ("untested", "The clean install probe used desktop Chromium and keyboard input."),
     })
     release_digest = digest(archive)
-    return {"adapter": "node-browser-trail/1", "environment": f"Linux Docker · {result.get('runtime', 'Node')} · Chromium {result.get('chromium') or 'unavailable'} · {image_id}",
+    return {"adapter": adapter, "environment": f"Linux Docker · {result.get('runtime', 'Node')} · Chromium {result.get('chromium') or 'unavailable'} · {image_id}",
             "checkedAt": datetime.now(timezone.utc).isoformat(), "elapsedMs": round((time.monotonic() - started) * 1000),
             "digest": release_digest, "corePassed": core,
             "findings": [{"id": "ev-" + release_digest[:12] + "-" + key, "capability": key, "status": value[0], "observation": value[1]}
@@ -172,9 +195,9 @@ def local_sample(args):
             if path.is_file() and not path.is_symlink() and not EXCLUDED.intersection(path.relative_to(source).parts):
                 incoming.write(path, path.relative_to(source).as_posix())
     archive = package(files.getvalue(), False)
-    report = evaluate(archive, args.image)
+    report = evaluate(archive, args.image, args.adapter)
     Path(args.output).mkdir(parents=True, exist_ok=True)
-    (Path(args.output) / "acorn-trail.zip").write_bytes(archive)
+    (Path(args.output) / ("acorn-trail.zip" if args.adapter == TRAIL else "column-desk.zip")).write_bytes(archive)
     (Path(args.output) / "report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"corePassed": report["corePassed"], "digest": report["digest"], "elapsedMs": report["elapsedMs"]}))
     return 0 if report["corePassed"] else 1
@@ -221,7 +244,7 @@ def process(args):
     try:
         raw = request(path + "/source", method="GET", extra=headers)
         archive = package(raw, True)
-        report = evaluate(archive, args.image)
+        report = evaluate(archive, args.image, args.adapter)
         request(path + "/artifact", archive, "PUT", {**headers, "Content-Type": "application/zip", "X-Archive-Sha256": report["digest"]})
         request(path + "/complete", {"report": report}, extra=headers)
     except Blocked as error:
@@ -237,9 +260,11 @@ if __name__ == "__main__":
     sample = action.add_parser("sample")
     sample.add_argument("--source", default="samples/acorn-trail")
     sample.add_argument("--output", default=".local/sample")
+    sample.add_argument("--adapter", choices=[TRAIL, CSV_INSPECT, CSV_STUDIO], default=TRAIL)
     job = action.add_parser("job")
     job.add_argument("--origin", required=True)
     job.add_argument("--repo", type=int, required=True)
+    job.add_argument("--adapter", choices=[TRAIL, CSV_INSPECT, CSV_STUDIO], default=TRAIL)
     options = cli.parse_args()
     try:
         raise SystemExit(local_sample(options) if options.command == "sample" else process(options))

@@ -23,6 +23,11 @@ async function lease(c: Ctx) {
 }
 const objectKey = (id: string, leaseId: string) => 'releases/' + id + '/' + leaseId + '.zip';
 const findingStates: FindingStatus[] = ['pass', 'fail', 'untested', 'inconclusive'];
+const adapterCapabilities: Record<string, readonly Capability[]> = {
+  'node-browser-trail/1': ['local', 'browser', 'keyboard'],
+  'node-browser-csv-inspect/1': ['local', 'browser', 'offline', 'csv-inspection'],
+  'node-browser-csv-studio/1': ['local', 'browser', 'offline', 'csv-inspection', 'csv-validation', 'schema-export'],
+};
 
 function reportFrom(input: unknown): Report {
   assert(input && typeof input === 'object', 400, 'Verification report is missing.');
@@ -31,9 +36,11 @@ function reportFrom(input: unknown): Report {
   const environment = str(fields.environment, 400);
   const checkedAt = str(fields.checkedAt, 50);
   const elapsedMs = Number(fields.elapsedMs);
+  const adapter = str(fields.adapter);
+  const required = Object.hasOwn(adapterCapabilities, adapter) ? adapterCapabilities[adapter] : undefined;
   assert(/^[a-f0-9]{64}$/.test(digest) && environment && Number.isFinite(Date.parse(checkedAt)) &&
     Number.isSafeInteger(elapsedMs) && elapsedMs > 0 && elapsedMs < 180000 &&
-    fields.adapter === 'node-browser-trail/1' && Array.isArray(fields.findings) && fields.findings.length <= 8, 400, 'Invalid verification report.');
+    required && Array.isArray(fields.findings) && fields.findings.length <= Object.keys(capabilities).length, 400, 'Invalid verification report.');
   const keys = new Set<Capability>();
   const findings: Finding[] = fields.findings.map((finding: Partial<Finding>) => {
     assert(finding && finding.capability && Object.hasOwn(capabilities, finding.capability) &&
@@ -46,9 +53,9 @@ function reportFrom(input: unknown): Report {
     };
   });
   const corePassed = fields.corePassed === true;
-  assert(!corePassed || ['local', 'browser', 'keyboard'].every(key => findings.some(f => f.capability === key && f.status === 'pass')),
-    400, 'Core verification requires successful install, launch and keyboard gameplay.');
-  return { adapter: fields.adapter, environment, checkedAt, elapsedMs, digest, corePassed, findings };
+  assert(!corePassed || required.every(key => findings.some(f => f.capability === key && f.status === 'pass')),
+    400, 'Core verification requires passing findings for this adapter.');
+  return { adapter, environment, checkedAt, elapsedMs, digest, corePassed, findings };
 }
 
 export const verification = new Hono<AppEnv>();

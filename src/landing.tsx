@@ -11,7 +11,7 @@ export function Landing() {
     </section>
     <nav className="landing-frame landing-links" aria-label="Explore Zcode">
       <Link to="/browse"><span>Browse releases</span><ArrowRight aria-hidden="true" strokeWidth={1.8}/></Link>
-      <Link to="/release/acorn-trail"><span>See a tested release</span><ArrowRight aria-hidden="true" strokeWidth={1.8}/></Link>
+      <Link to="/release/column-desk-inspect"><span>See a tested release</span><ArrowRight aria-hidden="true" strokeWidth={1.8}/></Link>
     </nav>
   </>;
 }

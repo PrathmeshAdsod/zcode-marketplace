@@ -23,3 +23,29 @@ test('Finder requires literal provenance and rejects a finding from a different 
   const orbit = samples.find(item => item.id === 'example-orbit')!;
   assert.equal(evidenceFor(orbit, { kind: 'capability', key: 'multiplayer', expected: true, priority: 'must', quote: '' }).state, 'seller-claimed');
 });
+
+test('Finder requires currency clarification before it can recommend a release', () => {
+  const query = 'I need a browser game with a budget of 50.';
+  const parsed = validateBrief({
+    ...blankFinderBrief, budget: { cents: 5000, inclusive: true, quote: 'budget of 50' },
+  }, query, true);
+  assert.ok(parsed);
+  assert.equal(parsed.budget, null);
+  assert.equal(parsed.ambiguities[0].quote, 'I need a browser game with a budget of 50');
+  assert.ok(finderMatches(samples, query, parsed).results.every(row => row.status === 'near'));
+});
+
+test('the tested Inspect edition cannot qualify for a reusable validation contract', () => {
+  const inspect = samples.find(item => item.id === 'column-desk-inspect');
+  assert.ok(inspect);
+  const query = 'I need a reusable CSV contract.';
+  const brief = { ...blankFinderBrief, requirements: [
+    { kind: 'capability' as const, key: 'schema-export' as const, priority: 'must' as const, expected: true, quote: query },
+  ] };
+  const candidates = finderMatches(samples, query, brief).results;
+  assert.deepEqual(candidates.map(candidate => candidate.item.id), ['column-desk-inspect']);
+  const [result] = candidates;
+  assert.equal(result.status, 'near');
+  assert.equal(result.evidence[0].state, 'contradicted');
+  assert.equal(result.evidence[0].evidenceId, 'ev-' + inspect.digest?.slice(0, 12) + '-schema-export');
+});

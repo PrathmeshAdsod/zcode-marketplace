@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Column Desk</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./desk.js"></script>
+</head>
+<body>
+  <header class="top"><a href="./" class="brand"><span aria-hidden="true">▥</span> Column Desk</a><span class="privacy"><span></span> On-device processing</span></header>
+  <main>
+    <div class="hero">
+      <div class="eyebrow" id="edition">INSPECT EDITION</div>
+      <h1>Check the file<br>before you import it.</h1>
+      <p id="intro">Spot broken columns and inconsistent records in vendor exports. Your CSV stays in this browser.</p>
+    </div>
+    <section class="workbench" aria-label="CSV inspection">
+      <div class="input">
+        <div><div class="eyebrow">SOURCE FILE</div><h2>Open a CSV</h2><p>UTF-8 · 2 MiB maximum · 10,000 records</p></div>
+        <div class="actions"><label class="button primary">Choose CSV<input type="file" id="csv-file" accept=".csv,text/csv" aria-label="Choose CSV"></label><button type="button" id="example">Try example</button></div>
+      </div>
+      <p class="status" id="file-status" role="status" aria-live="polite">Choose a file or use the synthetic example to see how inspection works.</p>
+      <div id="results" hidden>
+        <dl class="stats"><div><dt>Data rows</dt><dd id="rows"></dd></div><div><dt>Columns</dt><dd id="columns"></dd></div><div><dt>Structural issues</dt><dd id="issue-count"></dd></div></dl>
+        <div class="result-head"><h2>Structural findings</h2><button type="button" id="download">Download inspection</button></div>
+        <ul id="issues" class="issues"></ul>
+        <div class="result-head"><h2>Data preview</h2><span class="eyebrow">FIRST 8 ROWS</span></div>
+        <div class="table-scroll" tabindex="0" aria-label="Data preview"><table id="preview"></table></div>
+      </div>
+    </section>
+    <div id="contract"></div>
+  </main>
+  <footer>Column Desk <span>CSV preflight</span></footer>
+</body>
+</html>

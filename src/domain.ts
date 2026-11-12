@@ -12,6 +12,10 @@ export const capabilities = {
   'multiplayer': 'Multiplayer',
   'persistence': 'Save and reload',
   'mobile': 'Mobile controls',
+  'csv-inspection': 'Inspect CSV structure',
+  'csv-validation': 'Check duplicate IDs, missing values, emails and numeric totals',
+  'csv-iso-date': 'Validate ISO dates in a CSV',
+  'schema-export': 'Save and reload a reusable CSV contract',
 } as const;
 export type Capability = keyof typeof capabilities;
 export type FindingStatus = 'pass' | 'fail' | 'untested' | 'inconclusive';

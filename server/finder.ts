@@ -2,7 +2,7 @@ import { Hono } from 'hono';
 import { capabilities, categories, dollars, type Capability, type Release } from '../src/domain';
 import { blankFinderBrief, type FinderBrief, type FinderEvidence, type FinderResult, type Requirement } from '../src/finder-contract';
 import { listCatalog } from './catalog';
-import { assert, byIP, readJSON, str, throttle, type AppEnv } from './common';
+import { assert, byIP, local, readJSON, str, throttle, type AppEnv } from './common';
 import { interpretWithGemini } from './gemini';
 import { literalBrief } from './search';
 
@@ -11,6 +11,7 @@ const money = (value: unknown): value is number => Number.isSafeInteger(value) &
 const noPreference = /\b(?:do not|don't|does not|doesn't)\s+(?:need|require|care about)\b|\b(?:public internet|public hosting)\b.*\boptional\b/i;
 const requiresConnection = /\b(?:must never|must not|cannot|can't|should never)\s+(?:run|work|play)\s+(?:offline|without (?:an? )?(?:internet|network))/i;
 const costClarification = /\b(?:cheap enough|affordable enough)\s+(?:to|for)\b/i;
+const bareBudget = /\bbudget(?: of)?\s+\d+(?:\.\d{1,2})?(?![\d.])\b/i;
 const splitBrief = (query: string) => query.split(/[.!?](?=\s|$)|[,;]|\b(?:but|and)\b/i).map(part => part.trim()).filter(Boolean);
 const upfront = /\b(under|less than|below|up to|at most|max(?:imum)?|budget(?: of)?|no more than)\s*\$\s*(\d+)(?:\.(\d{1,2}))?(?![\d.])/i;
 const recurring = /\$\s*(\d+)(?:\.(\d{1,2}))?\s*(?:per month|a month|monthly)\b/i;
@@ -53,10 +54,15 @@ function grounded(input: FinderBrief, query: string): FinderBrief {
     if (!already && requirements.length < 12) requirements.push(explicit);
   }
   const ambiguities = [...input.ambiguities];
+  const upfront = statedUpfront(query);
+  const unqualifiedBudget = !upfront && clauses.find(clause => bareBudget.test(clause) && !/\bUSD\b|\$/i.test(clause));
+  if (unqualifiedBudget && !ambiguities.some(entry => bareBudget.test(entry.quote))) {
+    ambiguities.push({ reason: 'Confirm the budget currency and whether the amount is one-time.', quote: unqualifiedBudget.slice(0, 240) });
+  }
   if (costClarification.test(query) && !ambiguities.length) {
     ambiguities.push({ reason: 'Specify the operating budget and billing period.', quote: query.slice(0, 240) });
   }
-  return { ...input, requirements, budget: statedUpfront(query) ?? input.budget, ambiguities };
+  return { ...input, requirements, budget: unqualifiedBudget ? null : upfront ?? input.budget, ambiguities: ambiguities.slice(0, 4) };
 }
 
 export function validateBrief(input: unknown, query: string, generated = false): FinderBrief | null {
@@ -118,16 +124,19 @@ export function literalFinder(query: string): FinderBrief {
     budget: cap,
     category: parsed.category ? { value: parsed.category,
       quote: (clauses.find(clause => literalBrief(clause).category === parsed.category) ?? query).slice(0, 240) } : null,
-    ambiguities: [...parsed.ambiguities.map(reason => ({ reason, quote: query.slice(0, 240) })),
-      ...(!cap && /\bbudget of\s*\d/i.test(query) ? [{ reason: 'Confirm the amount, currency and whether this is a one-time budget.', quote: query.slice(0, 240) }] : [])],
+    ambiguities: parsed.ambiguities.map(reason => ({ reason, quote: query.slice(0, 240) })),
   }, query);
 }
 
 const identity = (entry: Requirement) => entry.kind + ':' + (entry.kind === 'capability' ? entry.key : String(entry.value).toLowerCase());
 const tokens = (text: string): string[] => text.toLowerCase().match(/[a-z0-9][a-z0-9.+#-]*/g) ?? [];
+const csvCapability = (key: Capability) => key.startsWith('csv-') || key === 'schema-export';
 const explicitClaims: Partial<Record<Capability, RegExp>> = {
   multiplayer: /\b(?:multiplayer|co-op)\b/i, browser: /\bbrowser\b/i, keyboard: /\bkeyboard controls\b/i,
   mobile: /\b(?:touch controls|mobile support)\b/i, offline: /\bruns offline\b/i,
+  'csv-inspection': /\binspect(?:s|ion)? (?:the )?csv structure\b/i,
+  'csv-validation': /\b(?:csv validation|validate(?:s)? csv values)\b/i,
+  'schema-export': /\b(?:reusable csv contract|exports? (?:a )?csv contract)\b/i,
 };
 export const evidenceLabels = { verified: 'Verified', contradicted: 'Contradicted', 'seller-claimed': 'Seller claimed', 'not-tested': 'Not tested' } as const;
 
@@ -156,8 +165,13 @@ export function evidenceFor(item: Release, entry: Requirement): FinderEvidence {
 export function finderMatches(items: Release[], query: string, brief: FinderBrief) {
   const hard = brief.requirements.filter(entry => entry.priority === 'must');
   const conflict = hard.some(entry => hard.some(other => identity(entry) === identity(other) && entry.expected !== other.expected));
-  const candidates = items.filter(item => (!brief.category || item.categories.includes(brief.category.value)) &&
-    (!brief.budget || (brief.budget.inclusive ? item.amount <= brief.budget.cents : item.amount < brief.budget.cents)));
+  const needsCsv = hard.some(entry => entry.kind === 'capability' && entry.expected && csvCapability(entry.key));
+  const candidates = items.filter(item => {
+    if (brief.category && !item.categories.includes(brief.category.value)) return false;
+    if (brief.budget && (brief.budget.inclusive ? item.amount > brief.budget.cents : item.amount >= brief.budget.cents)) return false;
+    return !needsCsv || /\bcsv\b/i.test(item.title + ' ' + item.summary + ' ' + item.description) ||
+      Boolean(item.digest && item.report?.digest === item.digest && item.report.findings.some(finding => csvCapability(finding.capability)));
+  });
   const words = new Set(tokens(query).filter(word => word.length > 2));
   const results = candidates.map(item => {
     const evidence = brief.requirements.map(entry => evidenceFor(item, entry));
@@ -168,12 +182,14 @@ export function finderMatches(items: Release[], query: string, brief: FinderBrie
     const qualified = !item.fixture && !conflict && !brief.ambiguities.length &&
       hardChecks.every(check => check.state === 'verified') && (lexical > 0 || brief.requirements.length > 0 || Boolean(brief.category || brief.budget));
     const value: FinderResult = { item, evidence, status: qualified ? 'match' : 'near' };
-    return { value, verified: hardChecks.filter(check => check.state === 'verified').length,
+    return { value, testedRequirements: hardChecks
+      .filter(check => check.evidenceId && (check.state === 'verified' || check.state === 'contradicted')).length,
+      verified: hardChecks.filter(check => check.state === 'verified').length,
       contradicted: hardChecks.filter(check => check.state === 'contradicted').length,
       preferences: evidence.filter(check => check.priority === 'prefer' && check.state === 'verified').length, lexical };
   });
   results.sort((a, b) => Number(b.value.status === 'match') - Number(a.value.status === 'match') ||
-    a.contradicted - b.contradicted || b.verified - a.verified || b.preferences - a.preferences ||
+    b.testedRequirements - a.testedRequirements || a.contradicted - b.contradicted || b.verified - a.verified || b.preferences - a.preferences ||
     b.lexical - a.lexical || Number(b.value.item.purchasable) - Number(a.value.item.purchasable));
   return { conflict, results: results.slice(0, 12).map(row => row.value) };
 }
@@ -193,5 +209,5 @@ finder.post('/match', async c => {
   const brief = validateBrief(body.brief, query);
   assert(query && brief, 400, 'Review the requirements before finding releases.');
   await throttle(c, 'finder-match', c.get('actor')?.id ?? byIP(c), 30, 300);
-  return c.json(finderMatches(await listCatalog(c.env), query, brief));
+  return c.json(finderMatches(await listCatalog(c.env, local(c)), query, brief));
 });

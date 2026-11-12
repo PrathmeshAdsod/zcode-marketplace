@@ -1,5 +1,7 @@
 # Verification evidence
 
+The current demonstration uses [Column Desk](../JUDGING.md). The free Inspect and private Studio editions were independently verified in network-disabled Docker. See the [live Gemini evidence](column-desk-browser.json), [hosted Studio report](column-desk-studio.json), and [16-brief Finder evaluation](FINDER-EVALUATION.md). The following Acorn Trail and 12-brief results are historical.
+
 ## Public sample
 
 Acorn Trail is an original MIT-licensed sample. Its ZIP SHA-256 is `87e194d0bdab68a3de22480e304720fd1683e19db78f337294bd23fb7da56105`. Docker unpacked and installed that archive with networking disabled, launched localhost and used keyboard input to finish the trail. The isolated test took 8.281 seconds. A separate Chrome session on the host installed a fresh extraction of the same bytes and finished the trail. Chrome downloaded the hosted ZIP and independently matched the same checksum.

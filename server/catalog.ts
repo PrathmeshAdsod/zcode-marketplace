@@ -25,9 +25,9 @@ export function publicRelease(row: ReleaseRow, env: Env): Release {
     purchasable: Boolean(row.digest && row.artifact_key && sellerEligible(env, row.seller_id)),
   };
 }
-export async function listCatalog(env: Env) {
+export async function listCatalog(env: Env, includeFixtures = false) {
   const result = await env.DB.prepare(releaseSelect + " WHERE r.status='published' AND l.active_release=r.id ORDER BY r.created_at DESC LIMIT 80").all<ReleaseRow>();
-  return [...result.results.map(row => publicRelease(row, env)), ...samples];
+  return [...result.results.map(row => publicRelease(row, env)), ...samples.filter(item => includeFixtures || !item.fixture)];
 }
 export function draftFrom(input: Record<string, unknown>): Draft {
   const value = { ...blankDraft };

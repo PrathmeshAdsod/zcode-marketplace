@@ -1,0 +1,85 @@
+{
+  "source": "Pinned private GitHub commit",
+  "storage": "Private Cloudflare R2",
+  "cleanInstall": {
+    "edition": "studio",
+    "digest": "45274542cfe83b7c965da4bc7417919625a633a387f59e380e649bb18eab2865",
+    "install": "up to date in 3s",
+    "startup": "Column Desk is ready at http://127.0.0.1:4178",
+    "chromium": "157.0.8103.40",
+    "observed": "Structure report, four rule violations, and three-column contract export",
+    "exactArchive": true
+  },
+  "status": "review",
+  "report": {
+    "adapter": "node-browser-csv-studio/1",
+    "environment": "Linux Docker · v26.13.1 · Chromium 158.0.8127.18 · sha256:54233f81f30c178f41795db53247da5926d7af62e046da9b68db138534b14e2e",
+    "checkedAt": "2026-11-12T09:23:56.168886+05:30",
+    "elapsedMs": 4125,
+    "digest": "45274542cfe83b7c965da4bc7417919625a633a387f59e380e649bb18eab2865",
+    "corePassed": true,
+    "findings": [
+      {
+        "id": "ev-45274542cfe8-local",
+        "capability": "local",
+        "status": "pass",
+        "observation": "Installed the delivered ZIP with npm ci and started its localhost server in a clean container."
+      },
+      {
+        "id": "ev-45274542cfe8-browser",
+        "capability": "browser",
+        "status": "pass",
+        "observation": "Chromium opened the released tool and processed a CSV uploaded through the file input."
+      },
+      {
+        "id": "ev-45274542cfe8-offline",
+        "capability": "offline",
+        "status": "pass",
+        "observation": "Processed the CSV and downloaded JSON results with container networking disabled."
+      },
+      {
+        "id": "ev-45274542cfe8-no-paid-api",
+        "capability": "no-paid-api",
+        "status": "pass",
+        "observation": "The tested CSV workflow completed without network access or API credentials."
+      },
+      {
+        "id": "ev-45274542cfe8-csv-inspection",
+        "capability": "csv-inspection",
+        "status": "pass",
+        "observation": "Uploaded a CSV with a short record and confirmed its row number in the downloaded JSON report."
+      },
+      {
+        "id": "ev-45274542cfe8-csv-validation",
+        "capability": "csv-validation",
+        "status": "pass",
+        "observation": "Found a duplicate ID, malformed email, nonnumeric amount and missing required amount in a three-row CSV."
+      },
+      {
+        "id": "ev-45274542cfe8-schema-export",
+        "capability": "schema-export",
+        "status": "pass",
+        "observation": "Exported a three-column JSON contract, reloaded the browser, imported the contract and validated a corrected file."
+      },
+      {
+        "id": "ev-45274542cfe8-multiplayer",
+        "capability": "multiplayer",
+        "status": "untested",
+        "observation": "The runner exercised one browser session."
+      },
+      {
+        "id": "ev-45274542cfe8-persistence",
+        "capability": "persistence",
+        "status": "untested",
+        "observation": "The runner did not test saves or reloads."
+      },
+      {
+        "id": "ev-45274542cfe8-mobile",
+        "capability": "mobile",
+        "status": "untested",
+        "observation": "The clean install probe used desktop Chromium and keyboard input."
+      }
+    ]
+  },
+  "release": "eac0b888-d153-41b7-88b3-4605a3691381"
+}

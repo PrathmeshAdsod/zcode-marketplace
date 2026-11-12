@@ -36,5 +36,8 @@ const items = [
     setup: 'No independently reproduced installation.',
     costs: 'Hosting and persistence costs are unknown for this example.' },
 ];
-await writeFile('src/catalog-samples.json', JSON.stringify(items, null, 2) + '\n');
+const catalog = JSON.parse(await readFile('src/catalog-samples.json', 'utf8'));
+await writeFile('src/catalog-samples.json', JSON.stringify([
+  ...catalog.filter(existing => !items.some(item => item.id === existing.id)), ...items,
+], null, 2) + '\n');
 await writeFile('docs/evidence/sample-run.json', JSON.stringify({ report, buyerInstall: install }, null, 2) + '\n');

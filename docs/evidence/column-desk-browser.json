@@ -1,0 +1,51 @@
+{
+  "origin": "https://zcode-marketplace.pages.dev",
+  "date": "2026-11-12T04:00:32.138Z",
+  "browser": "157.0.8103.40",
+  "source": "gemini",
+  "model": "gemini-3.5-flash-lite",
+  "freshAnonymousSession": true,
+  "fixturesExcluded": true,
+  "buyerBrief": "Our vendor CSVs repeat order IDs and sometimes put text in the total column. I need to catch both when the network is down, and reuse those checks on the next import. I can spend under $20 once.",
+  "interpretation": {
+    "version": 1,
+    "requirements": [
+      {
+        "quote": "repeat order IDs and sometimes put text in the total column. I need to catch both",
+        "expected": true,
+        "priority": "must",
+        "kind": "capability",
+        "key": "csv-validation"
+      },
+      {
+        "quote": "when the network is down",
+        "expected": true,
+        "priority": "must",
+        "kind": "capability",
+        "key": "offline"
+      },
+      {
+        "quote": "reuse those checks on the next import",
+        "expected": true,
+        "priority": "must",
+        "kind": "capability",
+        "key": "schema-export"
+      }
+    ],
+    "ambiguities": [],
+    "budget": {
+      "cents": 2000,
+      "inclusive": false,
+      "quote": "under $20"
+    },
+    "category": null
+  },
+  "editedBudgetDollars": 15,
+  "inspectDigest": "3e326d818e0671b04a6f153faf8be63f4d458ca6bc3ebb010cf25b8353b6908f",
+  "studioInPublicCatalog": false,
+  "evidence": "ev-3e326d818e06-csv-validation",
+  "downloads": {
+    "inspectChecksumMatches": true,
+    "studioSourceServedAsStaticAsset": false
+  }
+}

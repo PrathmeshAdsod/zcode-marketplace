@@ -12,6 +12,7 @@ const instruction = [
   'Must is a deal breaker or a plain request. Prefer is soft, including would be nice, ideally, rather, bonus and optional positive wishes. Do not interpret "I do not need X" as a prohibition or a preference. Never must-have a bonus.',
   'An explicit prohibition uses expected=false. Optional access over the public internet is neither a demand for offline operation nor a hosting preference. Keep conflicting mandatory requirements and add a clarification. Wi-Fi may be off, airplane mode, and no internet after setup mean offline=true. If the buyer insists the internet must be present, offline=false. A reference to a tab alone is not a browser requirement.',
   'Use these capability keys and meanings: ' + JSON.stringify(capabilities) + '. A ban on recurring API bills means no-paid-api=true. Do not equate an operating-cost ceiling with free APIs or an upfront budget.',
+  'For CSV duplicate IDs, missing values, numeric values or email formats use csv-validation. For date validation use csv-iso-date. When both are requested keep both. Reusing the same column rules across imports is schema-export. Merely finding broken rows or inconsistent column counts is csv-inspection. Keeping a file on-device without upload can be expressed as offline when the operation must work without a remote service. For unsupported mandatory CSV checks add a clarification instead of mapping them to a broader key.',
   'Use kind stack for a specific technology, deployment for a specific infrastructure target, and recurring-budget for a stated monthly USD ceiling in integer cents serialized as a string. Use the budget field only for an upfront USD cap in cents. Copy the printed amount. Strictly less than $0.01 means cents=1 and inclusive=false. The application applies the boundary. A stated spending cap is inclusive. If a cap or currency is unclear, add a clarification. A dollar sign in this USD marketplace can be treated as USD. Do not convert foreign currency.',
   'If wording such as cheap enough or an unspecified operating environment materially affects fit, ask a specific clarification. Do not ask about information the buyer has already made clear.',
   'Never assess catalog entries, invent evidence, or suggest a winner. Return at most twelve requirements and four clarifications.',
@@ -46,7 +47,7 @@ export async function interpretWithGemini(env: Env, query: string, validate: (in
   const limits = geminiLimits(env);
   if (!limits || unsafe.test(query)) return null;
   const now = seconds();
-  const key = await sha256('zcode:finder:1:prompt-2:' + geminiModel + ':' + query);
+  const key = await sha256('zcode:finder:1:prompt-4:' + geminiModel + ':' + query);
   const id = uuid();
   let leased = false;
   try {

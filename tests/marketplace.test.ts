@@ -204,8 +204,10 @@ test('leased runner fetches pinned bytes; an independent reviewer publishes exac
   assert.equal(hash(Buffer.from(await source.arrayBuffer())), releaseDigest);
   await ok(req(route + '/artifact', 'PUT', zip, undefined, { ...lease, 'x-archive-sha256': '0'.repeat(64) }), 409);
   await ok(req(route + '/artifact', 'PUT', zip, undefined, { ...lease, 'x-archive-sha256': releaseDigest }));
-  await ok(req(route + '/complete', 'POST', { report: samples[0].report }, undefined, lease));
-  await ok(req(route + '/complete', 'POST', { report: samples[0].report }, undefined, lease), 404);
+  const acornReport = samples.find(sample => sample.id === 'acorn-trail')?.report;
+  assert.ok(acornReport);
+  await ok(req(route + '/complete', 'POST', { report: acornReport }, undefined, lease));
+  await ok(req(route + '/complete', 'POST', { report: acornReport }, undefined, lease), 404);
   await ok(req('/reviews/' + release, 'POST', { decision: 'published', reason: 'Both videos and the clean run are acceptable.', mediaReviewed: true }, sellers[0]), 403);
   await ok(req('/reviews/' + release, 'POST', { decision: 'published', reason: 'Both videos and the clean run are acceptable.', mediaReviewed: false }, reviewer), 409);
   await env.DB.prepare('UPDATE repo_connections SET revoked_at=unixepoch() WHERE seller_id=? AND repo_id=101').bind(sellers[0]).run();

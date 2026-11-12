@@ -1,5 +1,103 @@
 [
   {
+    "id": "column-desk-inspect",
+    "title": "Column Desk Inspect",
+    "seller": "Column Desk",
+    "categories": [
+      "Developer tools",
+      "Automation"
+    ],
+    "stack": "Node.js, Browser JavaScript",
+    "version": "1.0.0",
+    "amount": 0,
+    "sample": true,
+    "purchasable": false,
+    "summary": "Inspect CSV structure on your device before a database or CRM import.",
+    "description": "Open a UTF-8 CSV to spot blank or duplicate headers and inconsistent row widths. Preview the columns and export a structural report as JSON. Supports quoted commas and multiline fields.",
+    "cover": "/samples/column-desk/inspect/cover.png",
+    "productVideo": "/samples/column-desk/inspect/product.mp4",
+    "setupVideo": "/samples/column-desk/inspect/setup.mp4",
+    "productTranscript": "A vendor CSV opens in Chromium. Column Desk shows the inconsistent fourth record and exports the same finding to a JSON report.",
+    "setupTranscript": "The recording shows the checksum, a fresh extraction, successful offline npm install and local server, then uploads a CSV and finds the broken row.",
+    "demo": "/samples/column-desk/inspect/index.html",
+    "sampleDownload": "/samples/column-desk/inspect/column-desk.zip",
+    "setup": "Extract the ZIP. With Node.js 24 or newer, run npm ci --offline and npm start. Open http://127.0.0.1:4173 and choose a UTF-8 CSV.",
+    "costs": "No API keys, paid services or hosting are needed to run the local workflow.",
+    "notices": "Original code. MIT license. No third-party runtime dependencies.",
+    "support": "For a setup issue, include your browser version and Node version. Keep the CSV private.",
+    "report": {
+      "adapter": "node-browser-csv-inspect/1",
+      "environment": "Linux Docker · v26.13.1 · Chromium 158.0.8127.18 · sha256:54233f81f30c178f41795db53247da5926d7af62e046da9b68db138534b14e2e",
+      "checkedAt": "2026-11-12T03:47:09.936936+00:00",
+      "elapsedMs": 9968,
+      "digest": "3e326d818e0671b04a6f153faf8be63f4d458ca6bc3ebb010cf25b8353b6908f",
+      "corePassed": true,
+      "findings": [
+        {
+          "id": "ev-3e326d818e06-local",
+          "capability": "local",
+          "status": "pass",
+          "observation": "Installed the delivered ZIP with npm ci and started its localhost server in a clean container."
+        },
+        {
+          "id": "ev-3e326d818e06-browser",
+          "capability": "browser",
+          "status": "pass",
+          "observation": "Chromium opened the released tool and processed a CSV uploaded through the file input."
+        },
+        {
+          "id": "ev-3e326d818e06-offline",
+          "capability": "offline",
+          "status": "pass",
+          "observation": "Processed the CSV and downloaded JSON results with container networking disabled."
+        },
+        {
+          "id": "ev-3e326d818e06-no-paid-api",
+          "capability": "no-paid-api",
+          "status": "pass",
+          "observation": "The tested CSV workflow completed without network access or API credentials."
+        },
+        {
+          "id": "ev-3e326d818e06-csv-inspection",
+          "capability": "csv-inspection",
+          "status": "pass",
+          "observation": "Uploaded a CSV with a short record and confirmed its row number in the downloaded JSON report."
+        },
+        {
+          "id": "ev-3e326d818e06-csv-validation",
+          "capability": "csv-validation",
+          "status": "fail",
+          "observation": "Inspect reports CSV structure. The tested release exposes no contract form or validation module."
+        },
+        {
+          "id": "ev-3e326d818e06-schema-export",
+          "capability": "schema-export",
+          "status": "fail",
+          "observation": "Inspect exports a structural report. The tested release exposes no contract form or export action."
+        },
+        {
+          "id": "ev-3e326d818e06-multiplayer",
+          "capability": "multiplayer",
+          "status": "untested",
+          "observation": "The runner exercised one browser session."
+        },
+        {
+          "id": "ev-3e326d818e06-persistence",
+          "capability": "persistence",
+          "status": "untested",
+          "observation": "The runner did not test saves or reloads."
+        },
+        {
+          "id": "ev-3e326d818e06-mobile",
+          "capability": "mobile",
+          "status": "untested",
+          "observation": "The clean install probe used desktop Chromium and keyboard input."
+        }
+      ]
+    },
+    "digest": "3e326d818e0671b04a6f153faf8be63f4d458ca6bc3ebb010cf25b8353b6908f"
+  },
+  {
     "id": "acorn-trail",
     "title": "Acorn Trail",
     "seller": "Zcode sample studio",

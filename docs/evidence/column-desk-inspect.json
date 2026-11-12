@@ -1,0 +1,81 @@
+{
+  "report": {
+    "adapter": "node-browser-csv-inspect/1",
+    "environment": "Linux Docker · v26.13.1 · Chromium 158.0.8127.18 · sha256:54233f81f30c178f41795db53247da5926d7af62e046da9b68db138534b14e2e",
+    "checkedAt": "2026-11-12T03:47:09.936936+00:00",
+    "elapsedMs": 9968,
+    "digest": "3e326d818e0671b04a6f153faf8be63f4d458ca6bc3ebb010cf25b8353b6908f",
+    "corePassed": true,
+    "findings": [
+      {
+        "id": "ev-3e326d818e06-local",
+        "capability": "local",
+        "status": "pass",
+        "observation": "Installed the delivered ZIP with npm ci and started its localhost server in a clean container."
+      },
+      {
+        "id": "ev-3e326d818e06-browser",
+        "capability": "browser",
+        "status": "pass",
+        "observation": "Chromium opened the released tool and processed a CSV uploaded through the file input."
+      },
+      {
+        "id": "ev-3e326d818e06-offline",
+        "capability": "offline",
+        "status": "pass",
+        "observation": "Processed the CSV and downloaded JSON results with container networking disabled."
+      },
+      {
+        "id": "ev-3e326d818e06-no-paid-api",
+        "capability": "no-paid-api",
+        "status": "pass",
+        "observation": "The tested CSV workflow completed without network access or API credentials."
+      },
+      {
+        "id": "ev-3e326d818e06-csv-inspection",
+        "capability": "csv-inspection",
+        "status": "pass",
+        "observation": "Uploaded a CSV with a short record and confirmed its row number in the downloaded JSON report."
+      },
+      {
+        "id": "ev-3e326d818e06-csv-validation",
+        "capability": "csv-validation",
+        "status": "fail",
+        "observation": "Inspect reports CSV structure. The tested release exposes no contract form or validation module."
+      },
+      {
+        "id": "ev-3e326d818e06-schema-export",
+        "capability": "schema-export",
+        "status": "fail",
+        "observation": "Inspect exports a structural report. The tested release exposes no contract form or export action."
+      },
+      {
+        "id": "ev-3e326d818e06-multiplayer",
+        "capability": "multiplayer",
+        "status": "untested",
+        "observation": "The runner exercised one browser session."
+      },
+      {
+        "id": "ev-3e326d818e06-persistence",
+        "capability": "persistence",
+        "status": "untested",
+        "observation": "The runner did not test saves or reloads."
+      },
+      {
+        "id": "ev-3e326d818e06-mobile",
+        "capability": "mobile",
+        "status": "untested",
+        "observation": "The clean install probe used desktop Chromium and keyboard input."
+      }
+    ]
+  },
+  "buyer": {
+    "edition": "inspect",
+    "digest": "3e326d818e0671b04a6f153faf8be63f4d458ca6bc3ebb010cf25b8353b6908f",
+    "install": "up to date in 2s",
+    "startup": "Column Desk is ready at http://127.0.0.1:4178",
+    "chromium": "157.0.8103.40",
+    "observed": "Short CSV record and corresponding JSON finding",
+    "exactArchive": true
+  }
+}

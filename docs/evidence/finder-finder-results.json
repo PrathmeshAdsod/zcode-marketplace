@@ -1,0 +1,552 @@
+{
+  "date": "2026-11-12T03:41:14.805Z",
+  "catalog": [
+    "acorn-trail:1.0.0:87e194d0bdab68a3de22480e304720fd1683e19db78f337294bd23fb7da56105:0",
+    "example-fieldnotes:1.0.0::3500",
+    "example-orbit:1.0.0::4900"
+  ],
+  "totals": {
+    "briefs": 16,
+    "completed": 16,
+    "extractionExact": 15,
+    "qualificationExact": 15,
+    "falseQualified": 1,
+    "top3Qualified": 7,
+    "top1Qualified": 7,
+    "liveGemini": 16,
+    "positiveBriefs": 7,
+    "validCitations": 22,
+    "citations": 22,
+    "sources": [
+      "gemini-3.5-flash-lite"
+    ]
+  },
+  "rows": [
+    {
+      "id": "classroom",
+      "mode": "gemini",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [
+        "browser:+",
+        "offline:+",
+        "no-paid-api:+"
+      ],
+      "soft": [
+        "keyboard:+"
+      ],
+      "maxCents": 6000,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-offline",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-keyboard",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-no-paid-api",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": true,
+      "top1Qualified": true,
+      "literalQuotes": true
+    },
+    {
+      "id": "network-required",
+      "mode": "gemini",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [
+        "offline:-"
+      ],
+      "soft": [
+        "keyboard:+"
+      ],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [],
+      "rank": [
+        "example-orbit",
+        "acorn-trail"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-offline",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-keyboard",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": null,
+      "top1Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "airplane",
+      "mode": "gemini",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [
+        "offline:+"
+      ],
+      "soft": [
+        "mobile:+"
+      ],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-offline",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-mobile",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": true,
+      "top1Qualified": true,
+      "literalQuotes": true
+    },
+    {
+      "id": "save",
+      "mode": "gemini",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [
+        "persistence:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-persistence",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": null,
+      "top1Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "shared",
+      "mode": "gemini",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [
+        "multiplayer:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-multiplayer",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": null,
+      "top1Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "local",
+      "mode": "gemini",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [
+        "local:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-local",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": true,
+      "top1Qualified": true,
+      "literalQuotes": true
+    },
+    {
+      "id": "irrelevant",
+      "mode": "gemini",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [
+        "browser:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": true,
+      "top1Qualified": true,
+      "literalQuotes": true
+    },
+    {
+      "id": "stack",
+      "mode": "gemini",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [
+        "stack:godot:+"
+      ],
+      "soft": [
+        "local:+"
+      ],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [],
+      "rank": [
+        "acorn-trail",
+        "example-orbit",
+        "example-fieldnotes"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-local",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": null,
+      "top1Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "stack-exclusion",
+      "mode": "gemini",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [
+        "browser:+",
+        "stack:node.js:-"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": null,
+      "top1Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "monthly",
+      "mode": "gemini",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [
+        "recurring-budget:2500:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [],
+      "rank": [
+        "acorn-trail",
+        "example-orbit",
+        "example-fieldnotes"
+      ],
+      "checks": [],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": null,
+      "top1Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "budget-boundary",
+      "mode": "gemini",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [
+        "browser:+"
+      ],
+      "soft": [],
+      "maxCents": 0,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": true,
+      "top1Qualified": true,
+      "literalQuotes": true
+    },
+    {
+      "id": "budget-unclear",
+      "mode": "gemini",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [
+        "browser:+"
+      ],
+      "soft": [],
+      "maxCents": 5000,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        }
+      ],
+      "extractionExact": false,
+      "qualificationExact": false,
+      "falseQualified": [
+        "acorn-trail"
+      ],
+      "top3Qualified": null,
+      "top1Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "free-setup",
+      "mode": "gemini",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [
+        "offline:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-offline",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": true,
+      "top1Qualified": true,
+      "literalQuotes": true
+    },
+    {
+      "id": "cost-ambiguity",
+      "mode": "gemini",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [
+        "browser:+"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": true,
+      "matches": [],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": null,
+      "top1Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "conflict",
+      "mode": "gemini",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [
+        "offline:+",
+        "offline:-"
+      ],
+      "soft": [],
+      "maxCents": null,
+      "clarify": true,
+      "matches": [],
+      "rank": [
+        "example-orbit",
+        "acorn-trail"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-offline",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-offline",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": null,
+      "top1Qualified": null,
+      "literalQuotes": true
+    },
+    {
+      "id": "preference",
+      "mode": "gemini",
+      "source": "gemini-3.5-flash-lite",
+      "hard": [
+        "browser:+"
+      ],
+      "soft": [
+        "no-paid-api:+"
+      ],
+      "maxCents": null,
+      "clarify": false,
+      "matches": [
+        "acorn-trail"
+      ],
+      "rank": [
+        "acorn-trail",
+        "example-orbit"
+      ],
+      "checks": [
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-browser",
+          "valid": true
+        },
+        {
+          "release": "acorn-trail",
+          "id": "ev-87e194d0bdab-no-paid-api",
+          "valid": true
+        }
+      ],
+      "extractionExact": true,
+      "qualificationExact": true,
+      "falseQualified": [],
+      "top3Qualified": true,
+      "top1Qualified": true,
+      "literalQuotes": true
+    }
+  ]
+}

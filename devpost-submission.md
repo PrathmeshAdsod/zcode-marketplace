@@ -1,48 +1,33 @@
 # Zcode
 
-**A marketplace for source licenses with evidence that the exact release can run.**
+**License software with evidence for the exact source release.**
 
-## The problem
+## The buyer's problem
 
-A freelancer finds a game that looks ready for a client project. The preview plays, but it says little about whether the delivered source runs locally, whether it needs a paid API, or whether the seller grants the right to ship the result. Those questions often surface after purchase.
+A buyer has a weekly vendor CSV with duplicate order IDs and malformed totals. They need to check it offline, reuse the rules next week, and pay once. A marketplace listing can say “CSV tool,” while leaving all those questions unanswered.
 
 ## What Zcode does
 
-Ask what you need in plain English. Zcode turns the brief into editable requirements and shows which releases meet them. Every checked capability links to an observation for that release. If the evidence is missing, the capability stays unconfirmed.
-
-For an eligible release, checkout binds the accepted license, merchant, price and ZIP checksum. The sandbox payment must be confirmed before the buyer gets a private download. The buyer can compare the archive checksum against the Repo Passport and install the exact ZIP the runner installed.
+Zcode turns the buyer's words into an editable checklist. Every hard requirement is evaluated against the evidence for the exact release. With Column Desk, two original editions illustrate why this matters. Inspect checks structure and exports a report. Studio adds reusable validation rules and reports duplicate IDs, invalid totals and missing values. The code runs on the buyer's device. Each claim shown as verified has a finding tied to the ZIP's checksum.
 
 ## How we used AI
 
-Gemini 3.5 Flash-Lite, called through the official Google GenAI SDK, interprets the buyer's words as editable constraints. The buyer sees verbatim source wording and approves the brief before ranking. Deterministic filters and findings bound to an exact ZIP decide whether a release qualifies. The model receives only the submitted brief. The earlier 12-brief evaluation found identical qualification results with keyword search and the earlier AI implementation. The new evaluation measures extraction and qualification separately against fixed reference labels.
+Zcode calls Gemini 3.5 Flash-Lite through the official Google GenAI SDK. It extracts the buyer's priorities, budget and requirements and shows the exact phrases they came from. A deterministic matcher reads release reports and controls what qualifies. The model sees the buyer's submitted text and has no authority over verification or payments.
 
-## How we used PayPal
+The original 12-brief run produced identical qualification outcomes with and without AI. In a new 16-brief development evaluation, the live Gemini path extracted the exact requirements on 15 briefs. The new keyword rules did so on nine. Both put a qualifying release first on seven of seven positive briefs. Gemini made one erroneous assumption about an unspecified currency. We kept the failed case in the results and added a check that asks the buyer to clarify. [Evaluation data](docs/evidence/FINDER-EVALUATION.md)
 
-PayPal Orders v2 creates the order and sends the buyer to PayPal's hosted Sandbox approval page. Payments v2 verifies capture and refunds, and signed webhooks support reconciliation. A D1 transaction binds an approved capture to one entitlement. In an isolated rehearsal, a separate test buyer completed a simulated $1.00 purchase, downloaded the verified ZIP, installed it again, and received a full refund. The hosted webhook accepted the signed capture and refund events.
+## How we used PayPal and Codex
 
-## How we used Codex
+Zcode sends the buyer to the real PayPal Sandbox approval page through Orders v2, confirms the resulting capture server-side and grants a private download for the accepted license and ZIP. Signed events support reconciliation. We observed a real simulated $1.00 capture, buyer-bound delivery, clean installation and full refund in a separate Acorn Trail rehearsal. The hosted application verified the capture and refund webhooks from that rehearsal.
 
-Codex turned the RepoProof design handoff into the Zcode workspace, built the Cloudflare app and Docker verifier, created the playable Acorn Trail sample, and checked the flow in Chrome. It exercised the database and private download path with fixtures, then reproduced the public sample install from the same archive in a clean folder.
+Codex built the Cloudflare application, structured Finder, isolated verifier, original Column Desk releases and browser tests. The hosted verifier fetched the pinned Studio commit from a private GitHub repository, ran its workflow in network-disabled Docker and stored the exact ZIP in private R2. Studio currently awaits independent approval before a hosted checkout can run.
 
-## Try it
+## Links
 
-1. Open [Zcode on Cloudflare Pages](https://zcode-marketplace.pages.dev/).
-2. Try the [offline game brief](https://zcode-marketplace.pages.dev/browse?q=Offline+browser+game+under+%2460). Choose **Interpret with Gemini**, review the requirements, then select **Find matching releases**. Acorn Trail has an offline observation. Orbit Rooms is a labeled example with unconfirmed behavior.
-3. Follow the evidence link, watch the two recordings and download Acorn Trail. The ZIP's SHA-256 is shown in the release detail.
-4. Extract the ZIP, run `npm ci --offline` and `npm start`, and play the trail at [localhost:4173](http://127.0.0.1:4173/). No credentials are needed for this public sample.
-5. See the [judge walkthrough](docs/JUDGING.md) for the credential-free sample and the status of the hosted Sandbox path.
+- [Hosted application](https://zcode-marketplace.pages.dev/)
+- [Public MIT-licensed repository](https://github.com/PrathmeshAdsod/zcode-marketplace)
+- [Judge walkthrough](docs/JUDGING.md)
+- [54-second demo](docs/evidence/zcode-column-desk-demo.mp4)
+- [Column Desk product and clean install recordings](docs/JUDGING.md#studio-and-checkout)
 
-## Demo video and links
-
-- **Working preview:** [zcode-marketplace.pages.dev](https://zcode-marketplace.pages.dev/).
-- **Public source URL:** `https://github.com/PrathmeshAdsod/zcode-marketplace` is the intended repository. Verify publication before entering it.
-- **Public YouTube URL:** Pending. The recorded demo shows the deployed Finder, comparison and public sample delivery. The PayPal proof was recorded separately in the rehearsal results.
-- **Screenshots:** Storefront, buyer brief with full and near matches, and Repo Passport in `docs/evidence/`.
-
-## Submission readiness
-
-The hosted GitHub App verified the pinned private fixture and stored the verified ZIP in private R2. A fresh anonymous browser verified live Gemini, checked comparison and the evidence link, and downloaded the matching public sample. The successful Sandbox payment and private download used an isolated rehearsal. The remaining end-to-end hosted transaction requires the fixture's independent GitHub review and a separate buyer.
-
-**Suggested walkthrough:** 0:00 state the buyer's question. 0:15 run the brief and open the cited observation. 0:45 show the release, license and install recording. 1:15 show real Sandbox approval and a verified receipt. 1:50 compare the downloaded hash and run from a clean folder. 2:35 show the completed game.
-
-**Owner fields:** Confirm country, organization, whether the project is new, eligibility and team declarations. Select the PayPal experience rating, contact preference, learning level and career-value response. Use the final integration results to complete the main technology field. No additional listed sponsor tool was used in this build. The deadline is **November 13 at 01:30 IST**, equivalent to November 12 at noon PST. Review the rules and release freeze before submitting. [Official rules](https://paypalaihackathon.devpost.com/rules) · [Official dates](https://paypalaihackathon.devpost.com/details/dates)
+The public YouTube submission link and final hosted Studio purchase are pending. The draft describes only evidence already collected. [Official rules](https://paypalaihackathon.devpost.com/rules)
